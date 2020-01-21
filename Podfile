@@ -18,10 +18,10 @@ workspace 'MergeBinary'
 def pod_merge_ui_swift
   # Using pod-merge - fast pod install, slow clean build
   #  pod 'UISwift', path: 'MergedPods/UISwift'
-  pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
-  pod 'UtilSwift', path: 'MergedPods/UtilSwift'
-  pod 'UtilObjc', path: 'MergedPods/UtilObjc'
-  pod 'UIObjc', path: 'MergedPods/UIObjc'
+  #  pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
+  #  pod 'UtilSwift', path: 'MergedPods/UtilSwift'
+  #  pod 'UtilObjc', path: 'MergedPods/UtilObjc'
+  #  pod 'UIObjc', path: 'MergedPods/UIObjc'
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
   #  pod 'UISwift', '1.0.0', :binary => true
   
@@ -87,52 +87,3 @@ target 'Feature' do
   end
   
 end
-
-## Static Frameworks:
-## ============
-##
-## Make all pods that are not shared across multiple targets into static frameworks by overriding the static_framework? function to return true
-## Linking the shared frameworks statically would lead to duplicate symbols
-## A future version of CocoaPods may make this easier to do. See https://github.com/CocoaPods/CocoaPods/issues/7428
-#shared_targets = [ 'Core']
-#dynamic_pod = []
-#pre_install do |installer|
-#
-#  installer.analysis_result.specifications.each do |specs|
-#    specs.swift_version = '5.0'
-#  end
-#
-#  static = []
-#  dynamic = []
-##  precompile = []
-#
-#  installer.pod_targets.each do |pod|
-#    #    if !pod.build_settings.framework_search_paths.none?
-#    #      precompile << pod
-#    #      puts "#{pod.name} is precompile"
-#    #    end
-#    #    INSTALL_PATH
-#    #    puts "#{pod.name} #{pod.build_settings.configuration_build_dir}"
-#    # If this pod is a dependency of one of our shared targets, it must be linked dynamically
-#    if pod.target_definitions.any? { |t| shared_targets.include? t.name }
-#      dynamic << pod
-#      #      puts "Overriding the dynamic_framework? method for #{pod.name} #{pod.build_settings.inpect}"
-#      next
-#    end
-#
-#    # Some pods must be dynamic
-#    if dynamic_pod.include? pod.name
-#      dynamic << pod
-#      next
-#    end
-#
-#    static << pod
-#    pod.instance_variable_set(:@build_type, Pod::Target::BuildType.static_framework)
-#    #    puts "Overriding the static_framework? method for #{pod.name} #{pod.build_settings.framework_search_paths}"
-##    puts "#{pod.name} #{pod.framework_search_paths}"
-#  end
-#
-#  puts "Installing #{static.count} pods as static frameworks"
-#  puts "Installing #{dynamic.count} pods as dynamic frameworks"
-##  puts "Installing #{precompile.count} pods as precompile frameworks"
-#end
