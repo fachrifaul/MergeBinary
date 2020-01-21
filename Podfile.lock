@@ -1,7 +1,7 @@
 PODS:
   - KeychainSwift (18.0.0)
   - lottie-ios (3.1.5)
-  - NetworkingSwift (1.0.0)
+  - NetworkingSwift (1.0.2)
   - PINCache (3.0.1-beta.7):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.7)
     - PINCache/Core (= 3.0.1-beta.7)
@@ -47,7 +47,7 @@ PODS:
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
   - lottie-ios (= 3.1.5)
-  - NetworkingSwift (from `./`)
+  - NetworkingSwift
   - PINCache (= 3.0.1-beta.7)
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
@@ -66,10 +66,10 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Starscream
     - SwiftPhoenixClient
+  https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
+    - NetworkingSwift
 
 EXTERNAL SOURCES:
-  NetworkingSwift:
-    :path: "./"
   Texture:
     :branch: releases/p8.0
     :git: https://github.com/TextureGroup/Texture.git
@@ -84,7 +84,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  NetworkingSwift: 3e697107f76663aee1a450f5e8fd14c3f07e40ba
+  NetworkingSwift: 9e94e3f4c11398a1fc4d7fc90de069e3e435e34d
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
@@ -93,6 +93,6 @@ SPEC CHECKSUMS:
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
   UISwift-Binary: cb3b4b181dfbe0ee7e5ab7cc4024b90771766820
 
-PODFILE CHECKSUM: 2ff9794dc6b86f86e73cfe99629caeccd107eebe
+PODFILE CHECKSUM: 296c7a1c78d57a9fc69ccda9023e2686fdcc1d56
 
 COCOAPODS: 1.8.4

@@ -8,7 +8,7 @@
           s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
           s.author           = { 'GrabTaxi Pte Ltd' => 'dummy@grabtaxi.com' }
           s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git'}
-          s.ios.deployment_target = '8.0'
+          s.ios.deployment_target = '10.0'
           s.source_files = 'MergedPods/UIObjc/Sources/**/*.{h,m,mm,swift}'
         
 s.module_map = 'MergedPods/UIObjc/Sources/module.modulemap'
