@@ -45,6 +45,8 @@ def all_pods
   core_pods
   feature_pods
   pod 'KeychainSwift', '18.0.0'
+  pod 'Starscream', '3.1.1'
+  pod 'SwiftPhoenixClient', '1.2.0', :binary => true
 end
 
 target 'MergeBinary' do

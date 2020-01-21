@@ -18,6 +18,9 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.14):
     - PINCache (= 3.0.1-beta.7)
     - PINRemoteImage/Core
+  - Starscream (3.1.1)
+  - SwiftPhoenixClient (1.2.0):
+    - Starscream (~> 3.1.0)
   - Texture (2.8.1):
     - Texture/AssetsLibrary (= 2.8.1)
     - Texture/Core (= 2.8.1)
@@ -46,6 +49,8 @@ DEPENDENCIES:
   - PINCache (= 3.0.1-beta.7)
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
+  - Starscream (= 3.1.1)
+  - SwiftPhoenixClient (= 1.2.0)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
   - UISwift-Binary (= 1.0.0)
 
@@ -56,6 +61,9 @@ SPEC REPOS:
     - PINCache
     - PINOperation
     - PINRemoteImage
+  https://github.com/CocoaPods/Specs.git:
+    - Starscream
+    - SwiftPhoenixClient
   https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
     - UISwift-Binary
 
@@ -75,9 +83,11 @@ SPEC CHECKSUMS:
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  SwiftPhoenixClient: ba22ba809b345522afe478817d7cb51ee3d49365
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
   UISwift-Binary: 26bfe8622e03488dd6084581f7dfc7857e69ae7f
 
-PODFILE CHECKSUM: d27e1eedb932ffb0b814e63207ba23e8329394e2
+PODFILE CHECKSUM: 6db8afce82fac3f36392c7abe2238c6a5f6c2db7
 
 COCOAPODS: 1.9.0.beta.2

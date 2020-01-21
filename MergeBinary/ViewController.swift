@@ -13,13 +13,21 @@ import UISwift
 import AsyncDisplayKit
 import PINCache
 import Lottie
+import Starscream
+import SwiftPhoenixClient
 
 class ViewController: UIViewController {
     
+    private var animationView: AnimationView? // Lottie
+    private var pincache: PINCache? // PINCache
+    private var text: ASTextNode? // Texture / AsyncDisplayKit
+    private var socket: WebSocket? //Starscream
+    private var lobbyChannel: Channel? //SwiftPhoenixClient
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        Dummy.dummy()
-        Feature.feature()
+        Dummy.dummy() // Feature
+        Feature.feature() // Core
         diffing()
     }
     
@@ -32,12 +40,12 @@ class ViewController: UIViewController {
             "a", "b", "c", "d"
         ]
         
-        let _ = diff(old: old, new: new)
+        let _ = diff(old: old, new: new) // UISwift - DeepDiff
     }
     
 }
 
-public class RadarMarkerView: MarkerView {
+public class RadarMarkerView: MarkerView { // UISwift - Charts
     private lazy var label: UILabel = UILabel()
     
     public override func awakeFromNib() {
