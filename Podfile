@@ -16,14 +16,17 @@ $texture_version = { :git => 'https://github.com/TextureGroup/Texture.git', :bra
 workspace 'MergeBinary'
 
 def pod_merge_ui_swift
-# Using pod-merge - fast pod install, slow clean build
-#  pod 'UISwift', path: 'MergedPods/UISwift'
-
-# Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
-#  pod 'UISwift', '1.0.0', :binary => true
-
-# Binary UISwift - slow first pod install (download pre-compile), fast clean build
-  pod 'UISwift-Binary', '1.0.0'
+  # Using pod-merge - fast pod install, slow clean build
+  #  pod 'UISwift', path: 'MergedPods/UISwift'
+  
+  # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
+  #  pod 'UISwift', '1.0.0', :binary => true
+  
+  # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
+  #  pod 'UISwift-Binary', '1.0.0'
+  
+  # Binary UISwift - slow first pod install (download pre-compile), fast clean build - local podspec
+  pod 'UISwift-Binary', path: 'MergedPodsBinary/UISwift'
 end
 
 def core_pods
@@ -44,9 +47,20 @@ def all_pods
   pod_merge_ui_swift
   core_pods
   feature_pods
+  doraemonkit_pods
   pod 'KeychainSwift', '18.0.0'
-  pod 'Starscream', '3.1.1'
+  pod 'Starscream', '3.1.1', :binary => true
   pod 'SwiftPhoenixClient', '1.2.0', :binary => true
+end
+
+def doraemonkit_pods
+  $doraemonkit_version = { :git => 'https://github.com/didi/DoraemonKit.git', :branch => 'master' }
+  $fbRetainCycleDetector_version = { :git => 'https://github.com/facebook/FBRetainCycleDetector.git', :branch => 'master' }
+
+  pod 'DoraemonKit/Core', $doraemonkit_version, :configurations => ['Debug']
+  pod 'DoraemonKit/WithLoad', $doraemonkit_version, :configurations => ['Debug']
+  pod 'DoraemonKit/WithMLeaksFinder', $doraemonkit_version, :configurations => ['Debug']
+  pod 'FBRetainCycleDetector', $fbRetainCycleDetector_version, :configurations => ['Debug']
 end
 
 target 'MergeBinary' do
@@ -81,3 +95,52 @@ target 'Feature' do
   end
   
 end
+
+## Static Frameworks:
+## ============
+##
+## Make all pods that are not shared across multiple targets into static frameworks by overriding the static_framework? function to return true
+## Linking the shared frameworks statically would lead to duplicate symbols
+## A future version of CocoaPods may make this easier to do. See https://github.com/CocoaPods/CocoaPods/issues/7428
+#shared_targets = [ 'Core']
+#dynamic_pod = []
+#pre_install do |installer|
+#
+#  installer.analysis_result.specifications.each do |specs|
+#    specs.swift_version = '5.0'
+#  end
+#
+#  static = []
+#  dynamic = []
+##  precompile = []
+#
+#  installer.pod_targets.each do |pod|
+#    #    if !pod.build_settings.framework_search_paths.none?
+#    #      precompile << pod
+#    #      puts "#{pod.name} is precompile"
+#    #    end
+#    #    INSTALL_PATH
+#    #    puts "#{pod.name} #{pod.build_settings.configuration_build_dir}"
+#    # If this pod is a dependency of one of our shared targets, it must be linked dynamically
+#    if pod.target_definitions.any? { |t| shared_targets.include? t.name }
+#      dynamic << pod
+#      #      puts "Overriding the dynamic_framework? method for #{pod.name} #{pod.build_settings.inpect}"
+#      next
+#    end
+#
+#    # Some pods must be dynamic
+#    if dynamic_pod.include? pod.name
+#      dynamic << pod
+#      next
+#    end
+#
+#    static << pod
+#    pod.instance_variable_set(:@build_type, Pod::Target::BuildType.static_framework)
+#    #    puts "Overriding the static_framework? method for #{pod.name} #{pod.build_settings.framework_search_paths}"
+##    puts "#{pod.name} #{pod.framework_search_paths}"
+#  end
+#
+#  puts "Installing #{static.count} pods as static frameworks"
+#  puts "Installing #{dynamic.count} pods as dynamic frameworks"
+##  puts "Installing #{precompile.count} pods as precompile frameworks"
+#end

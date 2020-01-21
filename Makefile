@@ -8,4 +8,5 @@ install: ## make install
 
 update: ## make update
 	bundle install
+	./script regenerate.rb
 	bundle exec pod install --repo-update
