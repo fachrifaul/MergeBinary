@@ -11,7 +11,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.source_files = 'UtilSwift.framework/Headers/*.{h}'
   s.vendored_frameworks = 'UtilSwift.framework'
-
+  s.frameworks = "Security"
+  s.resource = "UtilSwift.framework/DeviceGuru.bundle"
 
   s.swift_version = ["5.0"]
 end

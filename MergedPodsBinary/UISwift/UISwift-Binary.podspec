@@ -7,11 +7,12 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/grab/cocoapods-pod-merge'
   s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
   s.author           = { 'Fachri Febrian' => 'fachripaul@gmail.com' }
-  s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git', :tag => '1.0.0' }
-  s.ios.deployment_target = '8.0'
+  s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git'}
+  s.ios.deployment_target = '10.0'
   s.source_files = 'UISwift.framework/Headers/*.{h}'
   s.vendored_frameworks = 'UISwift.framework'
-
+  s.resource = "MergedPodsBinary/UISwift/UISwift.framework/IQKeyboardManager.bundle"
+  s.frameworks = "UIKit", "Foundation", "CoreGraphics", "QuartzCore"
 
   s.swift_version = ["5.0"]
 end

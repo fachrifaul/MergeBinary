@@ -42,23 +42,23 @@ PODS:
     - Texture/Core
   - Texture/Video (2.8.1):
     - Texture/Core
-  - UIObjc-Binary (1.0.0)
-  - UISwift-Binary (1.0.0)
-  - UtilSwift-Binary (1.0.0)
+  - UIObjc (1.0.0)
+  - UISwift (1.0.1)
+  - UtilSwift (1.0.0)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
   - lottie-ios (= 3.1.5)
-  - NetworkingSwift-Binary (from `MergedPodsBinary/NetworkingSwift`)
+  - NetworkingSwift-Binary
   - PINCache (= 3.0.1-beta.7)
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
   - Starscream (= 3.1.1)
   - SwiftPhoenixClient (= 1.2.0)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
-  - UIObjc-Binary (from `MergedPodsBinary/UIObjc`)
-  - UISwift-Binary (from `MergedPodsBinary/UISwift`)
-  - UtilSwift-Binary (from `MergedPodsBinary/UtilSwift`)
+  - UIObjc
+  - UISwift (~> 1.0.0)
+  - UtilSwift
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -70,19 +70,16 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Starscream
     - SwiftPhoenixClient
+  https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
+    - NetworkingSwift-Binary
+    - UIObjc
+    - UISwift
+    - UtilSwift
 
 EXTERNAL SOURCES:
-  NetworkingSwift-Binary:
-    :path: MergedPodsBinary/NetworkingSwift
   Texture:
     :branch: releases/p8.0
     :git: https://github.com/TextureGroup/Texture.git
-  UIObjc-Binary:
-    :path: MergedPodsBinary/UIObjc
-  UISwift-Binary:
-    :path: MergedPodsBinary/UISwift
-  UtilSwift-Binary:
-    :path: MergedPodsBinary/UtilSwift
 
 CHECKOUT OPTIONS:
   Texture:
@@ -92,17 +89,17 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  NetworkingSwift-Binary: 3083937807db588bad6f7891451e0c5ddca91489
+  NetworkingSwift-Binary: a13f2f3c156ee31113ac7a832afd025dbd211691
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftPhoenixClient: ba22ba809b345522afe478817d7cb51ee3d49365
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
-  UIObjc-Binary: 6310e8ed04ed8643b62c85fabfcf8bdc450aa39d
-  UISwift-Binary: cb3b4b181dfbe0ee7e5ab7cc4024b90771766820
-  UtilSwift-Binary: 92059eab7a2109eed507db2b840109c1fd0833c1
+  UIObjc: 5fb05fb8713ca4f232ac68e422c978f4e8ee5ef0
+  UISwift: d7cf1a045351b95aa80f5c4b0b257df0c0fb6f22
+  UtilSwift: 04a74e03c623a37e1c62f85d7639565cfac4461d
 
-PODFILE CHECKSUM: 861f74ad4b7041960aaf70119298657feea158e4
+PODFILE CHECKSUM: 12858a6542179c79dd413d24583677948cd3fa2d
 
 COCOAPODS: 1.8.4

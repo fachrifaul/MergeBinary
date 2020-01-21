@@ -7,11 +7,17 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/grab/cocoapods-pod-merge'
   s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
   s.author           = { 'Fachri Febrian' => 'fachripaul@gmail.com' }
-  s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git', :tag => '1.0.0' }
-  s.ios.deployment_target = '8.0'
-  s.source_files = 'MergedPodsBinary/UIObjc.framework/Headers/*.{h}'
-  s.vendored_frameworks = 'MergedPodsBinary/UIObjc.framework'
-
+  s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git' }
+  s.ios.deployment_target = '10.0'
+  s.source_files = 'MergedPodsBinary/UIObjc/UIObjc.framework/Headers/*.{h}'
+  s.vendored_frameworks = 'MergedPodsBinary/UIObjc/UIObjc.framework'
+  s.frameworks = "ImageIO", "QuartzCore"
+  s.resource_bundles = 
+  {
+    "CTAssetsPickerController"=>[
+      "MergedPodsBinary/UIObjc/UIObjc.framework/CTAssetsPickerController.bundle"
+    ]
+  }
 
   s.swift_version = ["5.0"]
 end

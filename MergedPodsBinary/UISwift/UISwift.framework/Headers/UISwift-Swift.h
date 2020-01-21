@@ -3299,6 +3299,356 @@ SWIFT_PROTOCOL("_TtP7UISwift16IPieChartDataSet_")
 @property (nonatomic, strong) UIColor * _Nullable highlightColor;
 @end
 
+/// <hr/>
+/// <h2>MARK: IQAutoToolbarManageBehaviour</h2>
+/// <code>IQAutoToolbarBySubviews</code>
+/// Creates Toolbar according to subview’s hirarchy of Textfield’s in view.
+/// <code>IQAutoToolbarByTag</code>
+/// Creates Toolbar according to tag property of TextField’s.
+/// <code>IQAutoToolbarByPosition</code>
+/// Creates Toolbar according to the y,x position of textField in it’s superview coordinate.
+typedef SWIFT_ENUM(NSInteger, IQAutoToolbarManageBehaviour, closed) {
+  IQAutoToolbarManageBehaviourBySubviews = 0,
+  IQAutoToolbarManageBehaviourByTag = 1,
+  IQAutoToolbarManageBehaviourByPosition = 2,
+};
+
+@class IQInvocation;
+
+SWIFT_CLASS("_TtC7UISwift15IQBarButtonItem")
+@interface IQBarButtonItem : UIBarButtonItem
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, strong) UIColor * _Nullable tintColor;
+/// Additional target & action to do get callback action. Note that setting custom target & selector doesn’t affect native functionality, this is just an additional target to get a callback.
+/// @param target Target object.
+/// @param action Target Selector.
+- (void)setTarget:(id _Nullable)target action:(SEL _Nullable)action;
+/// Customized Invocation to be called when button is pressed. invocation is internally created using setTarget:action: method.
+@property (nonatomic, strong) IQInvocation * _Nullable invocation;
+@end
+
+
+/// IQBarButtonItemConfiguration for creating toolbar with bar button items
+SWIFT_CLASS("_TtC7UISwift28IQBarButtonItemConfiguration")
+@interface IQBarButtonItemConfiguration : NSObject
+- (nonnull instancetype)initWithBarButtonSystemItem:(UIBarButtonSystemItem)barButtonSystemItem action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithImage:(UIImage * _Nonnull)image action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithTitle:(NSString * _Nonnull)title action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, strong) UIImage * _Nullable image;
+@property (nonatomic, readonly, copy) NSString * _Nullable title;
+@property (nonatomic, readonly) SEL _Nullable action;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// <code>IQEnableModeDefault</code>
+/// Pick default settings.
+/// <code>IQEnableModeEnabled</code>
+/// setting is enabled.
+/// <code>IQEnableModeDisabled</code>
+/// setting is disabled.
+typedef SWIFT_ENUM(NSInteger, IQEnableMode, closed) {
+  IQEnableModeDefault = 0,
+  IQEnableModeEnabled = 1,
+  IQEnableModeDisabled = 2,
+};
+
+
+SWIFT_CLASS("_TtC7UISwift12IQInvocation")
+@interface IQInvocation : NSObject
+@property (nonatomic, weak) id _Nullable target;
+@property (nonatomic) SEL _Nonnull action;
+- (nonnull instancetype)init:(id _Nonnull)target :(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (void)invokeFrom:(id _Nonnull)from;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+enum IQPreviousNextDisplayMode : NSInteger;
+@class UITapGestureRecognizer;
+@class UIViewController;
+
+/// <hr/>
+/// <h2>MARK: IQToolbar tags</h2>
+/// Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
+SWIFT_CLASS("_TtC7UISwift17IQKeyboardManager")
+@interface IQKeyboardManager : NSObject <UIGestureRecognizerDelegate>
+/// Enable/disable managing distance between keyboard and textField. Default is YES(Enabled when class loads in <code>+(void)load</code> method).
+@property (nonatomic) BOOL enable;
+/// To set keyboard distance from textField. can’t be less than zero. Default is 10.0.
+@property (nonatomic) CGFloat keyboardDistanceFromTextField;
+/// Boolean to know if keyboard is showing.
+@property (nonatomic, readonly) BOOL keyboardShowing;
+/// moved distance to the top used to maintain distance between keyboard and textField. Most of the time this will be a positive value.
+@property (nonatomic, readonly) CGFloat movedDistance;
+/// Returns the default singleton instance.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) IQKeyboardManager * _Nonnull shared;)
++ (IQKeyboardManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: IQToolbar handling</h2>
+/// \code
+/// Automatic add the IQToolbar functionality. Default is YES.
+///
+/// \endcode
+@property (nonatomic) BOOL enableAutoToolbar;
+/// /**
+/// IQAutoToolbarBySubviews:   Creates Toolbar according to subview’s hirarchy of Textfield’s in view.
+/// IQAutoToolbarByTag:        Creates Toolbar according to tag property of TextField’s.
+/// IQAutoToolbarByPosition:   Creates Toolbar according to the y,x position of textField in it’s superview coordinate.
+/// Default is IQAutoToolbarBySubviews.
+/// */
+/// AutoToolbar managing behaviour. Default is IQAutoToolbarBySubviews.
+@property (nonatomic) enum IQAutoToolbarManageBehaviour toolbarManageBehaviour;
+/// If YES, then uses textField’s tintColor property for IQToolbar, otherwise tint color is black. Default is NO.
+@property (nonatomic) BOOL shouldToolbarUsesTextFieldTintColor;
+/// This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault. If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color.
+@property (nonatomic, strong) UIColor * _Nullable toolbarTintColor;
+/// This is used for toolbar.barTintColor. Default is nil and uses white color.
+@property (nonatomic, strong) UIColor * _Nullable toolbarBarTintColor;
+/// IQPreviousNextDisplayModeDefault:      Show NextPrevious when there are more than 1 textField otherwise hide.
+/// IQPreviousNextDisplayModeAlwaysHide:   Do not show NextPrevious buttons in any case.
+/// IQPreviousNextDisplayModeAlwaysShow:   Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+@property (nonatomic) enum IQPreviousNextDisplayMode previousNextDisplayMode;
+/// Toolbar previous/next/done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button.
+@property (nonatomic, strong) UIImage * _Nullable toolbarPreviousBarButtonItemImage;
+@property (nonatomic, strong) UIImage * _Nullable toolbarNextBarButtonItemImage;
+@property (nonatomic, strong) UIImage * _Nullable toolbarDoneBarButtonItemImage;
+/// Toolbar previous/next/done button text, If nothing is provided then system default ‘UIBarButtonSystemItemDone’ will be used.
+@property (nonatomic, copy) NSString * _Nullable toolbarPreviousBarButtonItemText;
+@property (nonatomic, copy) NSString * _Nullable toolbarNextBarButtonItemText;
+@property (nonatomic, copy) NSString * _Nullable toolbarDoneBarButtonItemText;
+/// If YES, then it add the textField’s placeholder text on IQToolbar. Default is YES.
+@property (nonatomic) BOOL shouldShowToolbarPlaceholder;
+/// Placeholder Font. Default is nil.
+@property (nonatomic, strong) UIFont * _Nullable placeholderFont;
+/// Placeholder Color. Default is nil. Which means lightGray
+@property (nonatomic, strong) UIColor * _Nullable placeholderColor;
+/// Placeholder Button Color when it’s treated as button. Default is nil. Which means iOS Blue for light toolbar and Yellow for dark toolbar
+@property (nonatomic, strong) UIColor * _Nullable placeholderButtonColor;
+/// <hr/>
+/// <h2>MARK: UIKeyboard appearance overriding</h2>
+/// \code
+/// Override the keyboardAppearance for all textField/textView. Default is NO.
+///
+/// \endcode
+@property (nonatomic) BOOL overrideKeyboardAppearance;
+/// If overrideKeyboardAppearance is YES, then all the textField keyboardAppearance is set using this property.
+@property (nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property (nonatomic) BOOL shouldResignOnTouchOutside;
+/// TapGesture to resign keyboard on view’s touch. It’s a readonly property and exposed only for adding/removing dependencies if your added gesture does have collision with this one
+@property (nonatomic, strong) UITapGestureRecognizer * _Nonnull resignFirstResponderGesture;
+/// Resigns currently first responder field.
+- (BOOL)resignFirstResponder;
+/// Returns YES if can navigate to previous responder textField/textView, otherwise NO.
+@property (nonatomic, readonly) BOOL canGoPrevious;
+/// Returns YES if can navigate to next responder textField/textView, otherwise NO.
+@property (nonatomic, readonly) BOOL canGoNext;
+/// Navigate to previous responder textField/textView.
+- (BOOL)goPrevious;
+/// Navigate to next responder textField/textView.
+- (BOOL)goNext;
+/// Note: returning YES is guaranteed to allow simultaneous recognition. returning NO is not guaranteed to prevent simultaneous recognition, as the other gesture’s delegate may return YES.
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer SWIFT_WARN_UNUSED_RESULT;
+/// To not detect touch events in a subclass of UIControl, these may have added their own selector for specific work
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldReceiveTouch:(UITouch * _Nonnull)touch SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: UISound handling</h2>
+/// \code
+/// If YES, then it plays inputClick sound on next/previous/done click.
+///
+/// \endcode
+@property (nonatomic) BOOL shouldPlayInputClicks;
+/// <hr/>
+/// <h2>MARK: UIAnimation handling</h2>
+/// \code
+/// If YES, then calls 'setNeedsLayout' and 'layoutIfNeeded' on any frame update of to viewController's view.
+///
+/// \endcode
+@property (nonatomic) BOOL layoutIfNeededOnUpdate;
+/// <hr/>
+/// <h2>MARK: Class Level disabling methods</h2>
+/// \code
+///  Disable distance handling within the scope of disabled distance handling viewControllers classes. Within this scope, 'enabled' property is ignored. Class should be kind of UIViewController.
+///
+/// \endcode
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledDistanceHandlingClasses;
+/// Enable distance handling within the scope of enabled distance handling viewControllers classes. Within this scope, ‘enabled’ property is ignored. Class should be kind of UIViewController. If same Class is added in disabledDistanceHandlingClasses list, then enabledDistanceHandlingClasses will be ignored.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledDistanceHandlingClasses;
+/// Disable automatic toolbar creation within the scope of disabled toolbar viewControllers classes. Within this scope, ‘enableAutoToolbar’ property is ignored. Class should be kind of UIViewController.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledToolbarClasses;
+/// Enable automatic toolbar creation within the scope of enabled toolbar viewControllers classes. Within this scope, ‘enableAutoToolbar’ property is ignored. Class should be kind of UIViewController. If same Class is added in disabledToolbarClasses list, then enabledToolbarClasses will be ignore.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledToolbarClasses;
+/// Allowed subclasses of UIView to add all inner textField, this will allow to navigate between textField contains in different superview. Class should be kind of UIView.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIView)> * _Nonnull toolbarPreviousNextAllowedClasses;
+/// Disabled classes to ignore ‘shouldResignOnTouchOutside’ property, Class should be kind of UIViewController.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledTouchResignedClasses;
+/// Enabled classes to forcefully enable ‘shouldResignOnTouchOutsite’ property. Class should be kind of UIViewController. If same Class is added in disabledTouchResignedClasses list, then enabledTouchResignedClasses will be ignored.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledTouchResignedClasses;
+/// if shouldResignOnTouchOutside is enabled then you can customise the behaviour to not recognise gesture touches on some specific view subclasses. Class should be kind of UIView. Default is [UIControl, UINavigationBar]
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIView)> * _Nonnull touchResignedGestureIgnoreClasses;
+/// <hr/>
+/// <h2>MARK: Third Party Library support
+/// Add TextField/TextView Notifications customised Notifications. For example while using YYTextView https://github.com/ibireme/YYText</h2>
+/// \code
+/// Add/Remove customised Notification for third party customised TextField/TextView. Please be aware that the Notification object must be idential to UITextField/UITextView Notification objects and customised TextField/TextView support must be idential to UITextField/UITextView.
+/// @param didBeginEditingNotificationName This should be identical to UITextViewTextDidBeginEditingNotification
+/// @param didEndEditingNotificationName This should be identical to UITextViewTextDidEndEditingNotification
+///
+/// \endcode
+- (void)registerTextFieldViewClass:(SWIFT_METATYPE(UIView) _Nonnull)aClass didBeginEditingNotificationName:(NSString * _Nonnull)didBeginEditingNotificationName didEndEditingNotificationName:(NSString * _Nonnull)didEndEditingNotificationName;
+- (void)unregisterTextFieldViewClass:(SWIFT_METATYPE(UIView) _Nonnull)aClass didBeginEditingNotificationName:(NSString * _Nonnull)didBeginEditingNotificationName didEndEditingNotificationName:(NSString * _Nonnull)didEndEditingNotificationName;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (void)reloadLayoutIfNeeded;
+/// reloadInputViews to reload toolbar buttons enable/disable state on the fly Enhancement ID #434.
+- (void)reloadInputViews;
+/// <hr/>
+/// <h2>MARK: Debugging & Developer options</h2>
+@property (nonatomic) BOOL enableDebugging;
+/// @warning Use below methods to completely enable/disable notifications registered by library internally. Please keep in mind that library is totally dependent on NSNotification of UITextField, UITextField, Keyboard etc. If you do unregisterAllNotifications then library will not work at all. You should only use below methods if you want to completedly disable all library functions. You should use below methods at your own risk.
+- (void)registerAllNotifications;
+- (void)unregisterAllNotifications;
+@end
+
+@class UITextField;
+@class UITextView;
+@class NSTextAttachment;
+
+/// Manages the return key to work like next/done in a view hierarchy.
+SWIFT_CLASS("_TtC7UISwift26IQKeyboardReturnKeyHandler")
+@interface IQKeyboardReturnKeyHandler : NSObject <UITextFieldDelegate, UITextViewDelegate>
+/// <hr/>
+/// <h2>MARK: Settings</h2>
+/// \code
+/// Delegate of textField/textView.
+///
+/// \endcode
+@property (nonatomic, weak) id <UITextFieldDelegate, UITextViewDelegate> _Nullable delegate;
+/// Set the last textfield return key type. Default is UIReturnKeyDefault.
+@property (nonatomic) UIReturnKeyType lastTextFieldReturnKeyType;
+/// <hr/>
+/// <h2>MARK: Initialization/Deinitialization</h2>
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+/// Add all the textFields available in UIViewController’s view.
+- (nonnull instancetype)initWithController:(UIViewController * _Nonnull)controller OBJC_DESIGNATED_INITIALIZER;
+/// <hr/>
+/// <h2>MARK: Registering/Unregistering textFieldView</h2>
+/// \code
+/// Should pass UITextField/UITextView intance. Assign textFieldView delegate to self, change it's returnKeyType.
+///
+/// @param view UITextField/UITextView object to register.
+///
+/// \endcode
+- (void)addTextFieldView:(UIView * _Nonnull)view;
+/// Should pass UITextField/UITextView intance. Restore it’s textFieldView delegate and it’s returnKeyType.
+/// @param view UITextField/UITextView object to unregister.
+- (void)removeTextFieldView:(UIView * _Nonnull)view;
+/// Add all the UITextField/UITextView responderView’s.
+/// @param view UIView object to register all it’s responder subviews.
+- (void)addResponderFromView:(UIView * _Nonnull)view;
+/// Remove all the UITextField/UITextView responderView’s.
+/// @param view UIView object to unregister all it’s responder subviews.
+- (void)removeResponderFromView:(UIView * _Nonnull)view;
+/// <hr/>
+/// <h2>MARK: UITextField/UITextView delegates</h2>
+- (BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldEndEditing:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField reason:(UITextFieldDidEndEditingReason)reason SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldClear:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textViewShouldBeginEditing:(UITextView * _Nonnull)textView SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textViewShouldEndEditing:(UITextView * _Nonnull)textView SWIFT_WARN_UNUSED_RESULT;
+- (void)textViewDidBeginEditing:(UITextView * _Nonnull)textView;
+- (void)textViewDidEndEditing:(UITextView * _Nonnull)textView;
+- (BOOL)textView:(UITextView * _Nonnull)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString * _Nonnull)text SWIFT_WARN_UNUSED_RESULT;
+- (void)textViewDidChange:(UITextView * _Nonnull)textView;
+- (void)textViewDidChangeSelection:(UITextView * _Nonnull)textView;
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithURL:(NSURL * _Nonnull)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithTextAttachment:(NSTextAttachment * _Nonnull)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithURL:(NSURL * _Nonnull)URL inRange:(NSRange)characterRange SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,deprecated=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithTextAttachment:(NSTextAttachment * _Nonnull)textAttachment inRange:(NSRange)characterRange SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,deprecated=10.0);
+@end
+
+/// <code>IQPreviousNextDisplayModeDefault</code>
+/// Show NextPrevious when there are more than 1 textField otherwise hide.
+/// <code>IQPreviousNextDisplayModeAlwaysHide</code>
+/// Do not show NextPrevious buttons in any case.
+/// <code>IQPreviousNextDisplayModeAlwaysShow</code>
+/// Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+typedef SWIFT_ENUM(NSInteger, IQPreviousNextDisplayMode, closed) {
+  IQPreviousNextDisplayModeDefault = 0,
+  IQPreviousNextDisplayModeAlwaysHide = 1,
+  IQPreviousNextDisplayModeAlwaysShow = 2,
+};
+
+
+SWIFT_CLASS("_TtC7UISwift18IQPreviousNextView")
+@interface IQPreviousNextView : UIView
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSTextContainer;
+@class NSAttributedString;
+
+/// @abstract UITextView with placeholder support
+SWIFT_CLASS("_TtC7UISwift10IQTextView")
+@interface IQTextView : UITextView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer * _Nullable)textContainer OBJC_DESIGNATED_INITIALIZER;
+- (void)awakeFromNib;
+/// @abstract To set textView’s placeholder text color.
+@property (nonatomic, strong) UIColor * _Nullable placeholderTextColor;
+/// @abstract To set textView’s placeholder text. Default is nil.
+@property (nonatomic, copy) NSString * _Nullable placeholder;
+- (void)layoutSubviews;
+@property (nonatomic, copy) NSString * _Null_unspecified text;
+@property (nonatomic, strong) NSAttributedString * _Null_unspecified attributedText;
+@property (nonatomic, strong) UIFont * _Nullable font;
+@property (nonatomic) NSTextAlignment textAlignment;
+@property (nonatomic, strong) id <UITextViewDelegate> _Nullable delegate;
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+@end
+
+
+SWIFT_CLASS("_TtC7UISwift20IQTitleBarButtonItem")
+@interface IQTitleBarButtonItem : IQBarButtonItem
+@property (nonatomic, strong) UIFont * _Nullable titleFont;
+@property (nonatomic, copy) NSString * _Nullable title;
+/// titleColor to be used for displaying button text when displaying title (disabled state).
+@property (nonatomic, strong) UIColor * _Nullable titleColor;
+/// selectableTitleColor to be used for displaying button text when button is enabled.
+@property (nonatomic, strong) UIColor * _Nullable selectableTitleColor;
+/// Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
+@property (nonatomic, strong) IQInvocation * _Nullable invocation;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nonnull instancetype)initWithTitle:(NSString * _Nullable)title;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// @abstract   IQToolbar for IQKeyboardManager.
+SWIFT_CLASS("_TtC7UISwift9IQToolbar")
+@interface IQToolbar : UIToolbar <UIInputViewAudioFeedback>
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull previousBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull nextBarButton;
+@property (nonatomic, strong) IQTitleBarButtonItem * _Nonnull titleBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull doneBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull fixedSpaceBarButton;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (CGSize)sizeThatFits:(CGSize)size SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, strong) UIColor * _Null_unspecified tintColor;
+@property (nonatomic) UIBarStyle barStyle;
+- (void)layoutSubviews;
+@property (nonatomic, readonly) BOOL enableInputClicksWhenVisible;
+@end
+
 
 SWIFT_PROTOCOL("_TtP7UISwift18IRadarChartDataSet_")
 @protocol IRadarChartDataSet <ILineRadarChartDataSet>
@@ -3700,6 +4050,8 @@ SWIFT_CLASS_NAMED("MoveViewJob")
 @end
 
 
+
+
 /// A simple abstraction over UIAccessibilityElement and NSAccessibilityElement.
 SWIFT_CLASS("_TtC7UISwift24NSUIAccessibilityElement")
 @interface NSUIAccessibilityElement : UIAccessibilityElement
@@ -3719,6 +4071,32 @@ SWIFT_CLASS("_TtC7UISwift24NSUIAccessibilityElement")
 - (NSInteger)accessibilityElementCount SWIFT_WARN_UNUSED_RESULT;
 - (id _Nullable)accessibilityElementAtIndex:(NSInteger)index SWIFT_WARN_UNUSED_RESULT;
 - (NSInteger)indexOfAccessibilityElement:(id _Nonnull)element SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// Activity indicator view with nice animations
+SWIFT_CLASS("_TtC7UISwift23NVActivityIndicatorView")
+@interface NVActivityIndicatorView : UIView
+/// Color of activity indicator view.
+@property (nonatomic, strong) UIColor * _Nonnull color;
+/// Padding of activity indicator view.
+@property (nonatomic) CGFloat padding;
+/// Returns an object initialized from data in a given unarchiver.
+/// self, initialized using the data in decoder.
+/// \param decoder an unarchiver object.
+///
+///
+/// returns:
+/// self, initialized using the data in decoder.
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Returns the natural size for the receiving view, considering only properties of the view itself.
+/// A size indicating the natural size for the receiving view based on its intrinsic properties.
+///
+/// returns:
+/// A size indicating the natural size for the receiving view based on its intrinsic properties.
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+@property (nonatomic) CGRect bounds;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
 
 
@@ -3927,7 +4305,6 @@ SWIFT_CLASS("_TtC7UISwift21PieRadarChartViewBase")
 - (void)stopDeceleration;
 @end
 
-@class NSAttributedString;
 
 /// View that represents a pie chart. Draws cake like slices.
 SWIFT_CLASS("_TtC7UISwift12PieChartView")
@@ -4294,6 +4671,14 @@ SWIFT_CLASS("_TtC7UISwift21TriangleShapeRenderer")
 
 
 
+@interface UIImage (SWIFT_EXTENSION(UISwift))
++ (UIImage * _Nullable)keyboardPreviousiOS9Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextiOS9Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardPreviousiOS10Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextiOS10Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardPreviousImage SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextImage SWIFT_WARN_UNUSED_RESULT;
+@end
 
 
 
@@ -4306,6 +4691,119 @@ SWIFT_CLASS("_TtC7UISwift21TriangleShapeRenderer")
 
 
 
+@interface UIScrollView (SWIFT_EXTENSION(UISwift))
+/// If YES, then scrollview will ignore scrolling (simply not scroll it) for adjusting textfield position. Default is NO.
+@property (nonatomic) BOOL shouldIgnoreScrollingAdjustment;
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+@property (nonatomic) BOOL shouldRestoreScrollViewContentOffset;
+@end
+
+
+
+
+
+
+
+
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// <hr/>
+/// <h2>MARK: viewControllers</h2>
+/// \code
+/// Returns the UIViewController object that manages the receiver.
+///
+/// \endcode
+- (UIViewController * _Nullable)viewContainingController SWIFT_WARN_UNUSED_RESULT;
+/// Returns the topMost UIViewController object in hierarchy.
+- (UIViewController * _Nullable)topMostController SWIFT_WARN_UNUSED_RESULT;
+/// Returns the UIViewController object that is actually the parent of this object. Most of the time it’s the viewController object which actually contains it, but result may be different if it’s viewController is added as childViewController of another viewController.
+- (UIViewController * _Nullable)parentContainerViewController SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: Superviews/Subviews/Siglings</h2>
+/// \code
+/// Returns the superView of provided class type.
+///
+///  
+///  @param classType class type of the object which is to be search in above hierarchy and return
+///  
+///  @param belowView view object in upper hierarchy where method should stop searching and return nil
+///
+/// \endcode
+- (UIView * _Nullable)superviewOfClassType:(SWIFT_METATYPE(UIView) _Nonnull)classType belowView:(UIView * _Nullable)belowView SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+@property (nonatomic) CGFloat keyboardDistanceFromTextField;
+/// If shouldIgnoreSwitchingByNextPrevious is true then library will ignore this textField/textView while moving to other textField/textView using keyboard toolbar next previous buttons. Default is false
+@property (nonatomic) BOOL ignoreSwitchingByNextPrevious;
+/// Override resigns Keyboard on touching outside of UITextField/View behaviour for this particular textField.
+@property (nonatomic) enum IQEnableMode shouldResignOnTouchOutsideMode;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// <hr/>
+/// <h2>MARK: Toolbar</h2>
+/// \code
+///  IQToolbar references for better customization control.
+///
+/// \endcode
+@property (nonatomic, readonly, strong) IQToolbar * _Nonnull keyboardToolbar;
+/// <hr/>
+/// <h2>MARK: Toolbar title</h2>
+/// \code
+/// If `shouldHideToolbarPlaceholder` is YES, then title will not be added to the toolbar. Default to NO.
+///
+/// \endcode
+@property (nonatomic) BOOL shouldHideToolbarPlaceholder;
+/// <code>toolbarPlaceholder</code> to override default <code>placeholder</code> text when drawing text on toolbar.
+@property (nonatomic, copy) NSString * _Nullable toolbarPlaceholder;
+/// <code>drawingToolbarPlaceholder</code> will be actual text used to draw on toolbar. This would either <code>placeholder</code> or <code>toolbarPlaceholder</code>.
+@property (nonatomic, readonly, copy) NSString * _Nullable drawingToolbarPlaceholder;
+/// <hr/>
+/// <h2>MARK: Common</h2>
+- (void)addKeyboardToolbarWithTargetWithTarget:(id _Nullable)target titleText:(NSString * _Nullable)titleText rightBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)rightBarButtonConfiguration previousBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)previousBarButtonConfiguration nextBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)nextBarButtonConfiguration;
+/// <hr/>
+/// <h2>MARK: Right</h2>
+- (void)addDoneOnKeyboardWithTarget:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addDoneOnKeyboardWithTarget:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+- (void)addRightButtonOnKeyboardWithImage:(UIImage * _Nonnull)image target:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithImage:(UIImage * _Nonnull)image target:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+- (void)addRightButtonOnKeyboardWithText:(NSString * _Nonnull)text target:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithText:(NSString * _Nonnull)text target:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+/// <hr/>
+/// <h2>MARK: Right/Left</h2>
+- (void)addCancelDoneOnKeyboardWithTarget:(id _Nullable)target cancelAction:(SEL _Nonnull)cancelAction doneAction:(SEL _Nonnull)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonTitle:(NSString * _Nonnull)leftButtonTitle rightButtonTitle:(NSString * _Nonnull)rightButtonTitle leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonImage:(UIImage * _Nonnull)leftButtonImage rightButtonImage:(UIImage * _Nonnull)rightButtonImage leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addCancelDoneOnKeyboardWithTarget:(id _Nullable)target cancelAction:(SEL _Nonnull)cancelAction doneAction:(SEL _Nonnull)doneAction titleText:(NSString * _Nullable)titleText;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonTitle:(NSString * _Nonnull)leftButtonTitle rightButtonTitle:(NSString * _Nonnull)rightButtonTitle leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonImage:(UIImage * _Nonnull)leftButtonImage rightButtonImage:(UIImage * _Nonnull)rightButtonImage leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+/// <hr/>
+/// <h2>MARK: Previous/Next/Right</h2>
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id _Nullable)target previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction doneAction:(SEL _Nonnull)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonImage:(UIImage * _Nonnull)rightButtonImage previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonTitle:(NSString * _Nonnull)rightButtonTitle previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id _Nullable)target previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction doneAction:(SEL _Nonnull)doneAction titleText:(NSString * _Nullable)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonImage:(UIImage * _Nonnull)rightButtonImage previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonTitle:(NSString * _Nonnull)rightButtonTitle previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+@end
+
+
+@interface UIViewController (SWIFT_EXTENSION(UISwift))
+- (UIViewController * _Nullable)parentIQContainerViewController SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class NSLayoutConstraint;
+
+@interface UIViewController (SWIFT_EXTENSION(UISwift))
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+/// @deprecated    Due to change in core-logic of handling distance between textField and keyboard distance, this layout contraint tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint * _Nullable IQLayoutGuideConstraint SWIFT_DEPRECATED_MSG("Due to change in core-logic of handling distance between textField and keyboard distance, this layout contraint tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview.");
+@end
 
 
 /// Class that contains information about the charts current viewport settings, including offsets, scale & translation levels, …
@@ -7953,6 +8451,356 @@ SWIFT_PROTOCOL("_TtP7UISwift16IPieChartDataSet_")
 @property (nonatomic, strong) UIColor * _Nullable highlightColor;
 @end
 
+/// <hr/>
+/// <h2>MARK: IQAutoToolbarManageBehaviour</h2>
+/// <code>IQAutoToolbarBySubviews</code>
+/// Creates Toolbar according to subview’s hirarchy of Textfield’s in view.
+/// <code>IQAutoToolbarByTag</code>
+/// Creates Toolbar according to tag property of TextField’s.
+/// <code>IQAutoToolbarByPosition</code>
+/// Creates Toolbar according to the y,x position of textField in it’s superview coordinate.
+typedef SWIFT_ENUM(NSInteger, IQAutoToolbarManageBehaviour, closed) {
+  IQAutoToolbarManageBehaviourBySubviews = 0,
+  IQAutoToolbarManageBehaviourByTag = 1,
+  IQAutoToolbarManageBehaviourByPosition = 2,
+};
+
+@class IQInvocation;
+
+SWIFT_CLASS("_TtC7UISwift15IQBarButtonItem")
+@interface IQBarButtonItem : UIBarButtonItem
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, strong) UIColor * _Nullable tintColor;
+/// Additional target & action to do get callback action. Note that setting custom target & selector doesn’t affect native functionality, this is just an additional target to get a callback.
+/// @param target Target object.
+/// @param action Target Selector.
+- (void)setTarget:(id _Nullable)target action:(SEL _Nullable)action;
+/// Customized Invocation to be called when button is pressed. invocation is internally created using setTarget:action: method.
+@property (nonatomic, strong) IQInvocation * _Nullable invocation;
+@end
+
+
+/// IQBarButtonItemConfiguration for creating toolbar with bar button items
+SWIFT_CLASS("_TtC7UISwift28IQBarButtonItemConfiguration")
+@interface IQBarButtonItemConfiguration : NSObject
+- (nonnull instancetype)initWithBarButtonSystemItem:(UIBarButtonSystemItem)barButtonSystemItem action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithImage:(UIImage * _Nonnull)image action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithTitle:(NSString * _Nonnull)title action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, strong) UIImage * _Nullable image;
+@property (nonatomic, readonly, copy) NSString * _Nullable title;
+@property (nonatomic, readonly) SEL _Nullable action;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// <code>IQEnableModeDefault</code>
+/// Pick default settings.
+/// <code>IQEnableModeEnabled</code>
+/// setting is enabled.
+/// <code>IQEnableModeDisabled</code>
+/// setting is disabled.
+typedef SWIFT_ENUM(NSInteger, IQEnableMode, closed) {
+  IQEnableModeDefault = 0,
+  IQEnableModeEnabled = 1,
+  IQEnableModeDisabled = 2,
+};
+
+
+SWIFT_CLASS("_TtC7UISwift12IQInvocation")
+@interface IQInvocation : NSObject
+@property (nonatomic, weak) id _Nullable target;
+@property (nonatomic) SEL _Nonnull action;
+- (nonnull instancetype)init:(id _Nonnull)target :(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (void)invokeFrom:(id _Nonnull)from;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+enum IQPreviousNextDisplayMode : NSInteger;
+@class UITapGestureRecognizer;
+@class UIViewController;
+
+/// <hr/>
+/// <h2>MARK: IQToolbar tags</h2>
+/// Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
+SWIFT_CLASS("_TtC7UISwift17IQKeyboardManager")
+@interface IQKeyboardManager : NSObject <UIGestureRecognizerDelegate>
+/// Enable/disable managing distance between keyboard and textField. Default is YES(Enabled when class loads in <code>+(void)load</code> method).
+@property (nonatomic) BOOL enable;
+/// To set keyboard distance from textField. can’t be less than zero. Default is 10.0.
+@property (nonatomic) CGFloat keyboardDistanceFromTextField;
+/// Boolean to know if keyboard is showing.
+@property (nonatomic, readonly) BOOL keyboardShowing;
+/// moved distance to the top used to maintain distance between keyboard and textField. Most of the time this will be a positive value.
+@property (nonatomic, readonly) CGFloat movedDistance;
+/// Returns the default singleton instance.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) IQKeyboardManager * _Nonnull shared;)
++ (IQKeyboardManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: IQToolbar handling</h2>
+/// \code
+/// Automatic add the IQToolbar functionality. Default is YES.
+///
+/// \endcode
+@property (nonatomic) BOOL enableAutoToolbar;
+/// /**
+/// IQAutoToolbarBySubviews:   Creates Toolbar according to subview’s hirarchy of Textfield’s in view.
+/// IQAutoToolbarByTag:        Creates Toolbar according to tag property of TextField’s.
+/// IQAutoToolbarByPosition:   Creates Toolbar according to the y,x position of textField in it’s superview coordinate.
+/// Default is IQAutoToolbarBySubviews.
+/// */
+/// AutoToolbar managing behaviour. Default is IQAutoToolbarBySubviews.
+@property (nonatomic) enum IQAutoToolbarManageBehaviour toolbarManageBehaviour;
+/// If YES, then uses textField’s tintColor property for IQToolbar, otherwise tint color is black. Default is NO.
+@property (nonatomic) BOOL shouldToolbarUsesTextFieldTintColor;
+/// This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault. If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color.
+@property (nonatomic, strong) UIColor * _Nullable toolbarTintColor;
+/// This is used for toolbar.barTintColor. Default is nil and uses white color.
+@property (nonatomic, strong) UIColor * _Nullable toolbarBarTintColor;
+/// IQPreviousNextDisplayModeDefault:      Show NextPrevious when there are more than 1 textField otherwise hide.
+/// IQPreviousNextDisplayModeAlwaysHide:   Do not show NextPrevious buttons in any case.
+/// IQPreviousNextDisplayModeAlwaysShow:   Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+@property (nonatomic) enum IQPreviousNextDisplayMode previousNextDisplayMode;
+/// Toolbar previous/next/done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button.
+@property (nonatomic, strong) UIImage * _Nullable toolbarPreviousBarButtonItemImage;
+@property (nonatomic, strong) UIImage * _Nullable toolbarNextBarButtonItemImage;
+@property (nonatomic, strong) UIImage * _Nullable toolbarDoneBarButtonItemImage;
+/// Toolbar previous/next/done button text, If nothing is provided then system default ‘UIBarButtonSystemItemDone’ will be used.
+@property (nonatomic, copy) NSString * _Nullable toolbarPreviousBarButtonItemText;
+@property (nonatomic, copy) NSString * _Nullable toolbarNextBarButtonItemText;
+@property (nonatomic, copy) NSString * _Nullable toolbarDoneBarButtonItemText;
+/// If YES, then it add the textField’s placeholder text on IQToolbar. Default is YES.
+@property (nonatomic) BOOL shouldShowToolbarPlaceholder;
+/// Placeholder Font. Default is nil.
+@property (nonatomic, strong) UIFont * _Nullable placeholderFont;
+/// Placeholder Color. Default is nil. Which means lightGray
+@property (nonatomic, strong) UIColor * _Nullable placeholderColor;
+/// Placeholder Button Color when it’s treated as button. Default is nil. Which means iOS Blue for light toolbar and Yellow for dark toolbar
+@property (nonatomic, strong) UIColor * _Nullable placeholderButtonColor;
+/// <hr/>
+/// <h2>MARK: UIKeyboard appearance overriding</h2>
+/// \code
+/// Override the keyboardAppearance for all textField/textView. Default is NO.
+///
+/// \endcode
+@property (nonatomic) BOOL overrideKeyboardAppearance;
+/// If overrideKeyboardAppearance is YES, then all the textField keyboardAppearance is set using this property.
+@property (nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property (nonatomic) BOOL shouldResignOnTouchOutside;
+/// TapGesture to resign keyboard on view’s touch. It’s a readonly property and exposed only for adding/removing dependencies if your added gesture does have collision with this one
+@property (nonatomic, strong) UITapGestureRecognizer * _Nonnull resignFirstResponderGesture;
+/// Resigns currently first responder field.
+- (BOOL)resignFirstResponder;
+/// Returns YES if can navigate to previous responder textField/textView, otherwise NO.
+@property (nonatomic, readonly) BOOL canGoPrevious;
+/// Returns YES if can navigate to next responder textField/textView, otherwise NO.
+@property (nonatomic, readonly) BOOL canGoNext;
+/// Navigate to previous responder textField/textView.
+- (BOOL)goPrevious;
+/// Navigate to next responder textField/textView.
+- (BOOL)goNext;
+/// Note: returning YES is guaranteed to allow simultaneous recognition. returning NO is not guaranteed to prevent simultaneous recognition, as the other gesture’s delegate may return YES.
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer SWIFT_WARN_UNUSED_RESULT;
+/// To not detect touch events in a subclass of UIControl, these may have added their own selector for specific work
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldReceiveTouch:(UITouch * _Nonnull)touch SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: UISound handling</h2>
+/// \code
+/// If YES, then it plays inputClick sound on next/previous/done click.
+///
+/// \endcode
+@property (nonatomic) BOOL shouldPlayInputClicks;
+/// <hr/>
+/// <h2>MARK: UIAnimation handling</h2>
+/// \code
+/// If YES, then calls 'setNeedsLayout' and 'layoutIfNeeded' on any frame update of to viewController's view.
+///
+/// \endcode
+@property (nonatomic) BOOL layoutIfNeededOnUpdate;
+/// <hr/>
+/// <h2>MARK: Class Level disabling methods</h2>
+/// \code
+///  Disable distance handling within the scope of disabled distance handling viewControllers classes. Within this scope, 'enabled' property is ignored. Class should be kind of UIViewController.
+///
+/// \endcode
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledDistanceHandlingClasses;
+/// Enable distance handling within the scope of enabled distance handling viewControllers classes. Within this scope, ‘enabled’ property is ignored. Class should be kind of UIViewController. If same Class is added in disabledDistanceHandlingClasses list, then enabledDistanceHandlingClasses will be ignored.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledDistanceHandlingClasses;
+/// Disable automatic toolbar creation within the scope of disabled toolbar viewControllers classes. Within this scope, ‘enableAutoToolbar’ property is ignored. Class should be kind of UIViewController.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledToolbarClasses;
+/// Enable automatic toolbar creation within the scope of enabled toolbar viewControllers classes. Within this scope, ‘enableAutoToolbar’ property is ignored. Class should be kind of UIViewController. If same Class is added in disabledToolbarClasses list, then enabledToolbarClasses will be ignore.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledToolbarClasses;
+/// Allowed subclasses of UIView to add all inner textField, this will allow to navigate between textField contains in different superview. Class should be kind of UIView.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIView)> * _Nonnull toolbarPreviousNextAllowedClasses;
+/// Disabled classes to ignore ‘shouldResignOnTouchOutside’ property, Class should be kind of UIViewController.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledTouchResignedClasses;
+/// Enabled classes to forcefully enable ‘shouldResignOnTouchOutsite’ property. Class should be kind of UIViewController. If same Class is added in disabledTouchResignedClasses list, then enabledTouchResignedClasses will be ignored.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledTouchResignedClasses;
+/// if shouldResignOnTouchOutside is enabled then you can customise the behaviour to not recognise gesture touches on some specific view subclasses. Class should be kind of UIView. Default is [UIControl, UINavigationBar]
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIView)> * _Nonnull touchResignedGestureIgnoreClasses;
+/// <hr/>
+/// <h2>MARK: Third Party Library support
+/// Add TextField/TextView Notifications customised Notifications. For example while using YYTextView https://github.com/ibireme/YYText</h2>
+/// \code
+/// Add/Remove customised Notification for third party customised TextField/TextView. Please be aware that the Notification object must be idential to UITextField/UITextView Notification objects and customised TextField/TextView support must be idential to UITextField/UITextView.
+/// @param didBeginEditingNotificationName This should be identical to UITextViewTextDidBeginEditingNotification
+/// @param didEndEditingNotificationName This should be identical to UITextViewTextDidEndEditingNotification
+///
+/// \endcode
+- (void)registerTextFieldViewClass:(SWIFT_METATYPE(UIView) _Nonnull)aClass didBeginEditingNotificationName:(NSString * _Nonnull)didBeginEditingNotificationName didEndEditingNotificationName:(NSString * _Nonnull)didEndEditingNotificationName;
+- (void)unregisterTextFieldViewClass:(SWIFT_METATYPE(UIView) _Nonnull)aClass didBeginEditingNotificationName:(NSString * _Nonnull)didBeginEditingNotificationName didEndEditingNotificationName:(NSString * _Nonnull)didEndEditingNotificationName;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (void)reloadLayoutIfNeeded;
+/// reloadInputViews to reload toolbar buttons enable/disable state on the fly Enhancement ID #434.
+- (void)reloadInputViews;
+/// <hr/>
+/// <h2>MARK: Debugging & Developer options</h2>
+@property (nonatomic) BOOL enableDebugging;
+/// @warning Use below methods to completely enable/disable notifications registered by library internally. Please keep in mind that library is totally dependent on NSNotification of UITextField, UITextField, Keyboard etc. If you do unregisterAllNotifications then library will not work at all. You should only use below methods if you want to completedly disable all library functions. You should use below methods at your own risk.
+- (void)registerAllNotifications;
+- (void)unregisterAllNotifications;
+@end
+
+@class UITextField;
+@class UITextView;
+@class NSTextAttachment;
+
+/// Manages the return key to work like next/done in a view hierarchy.
+SWIFT_CLASS("_TtC7UISwift26IQKeyboardReturnKeyHandler")
+@interface IQKeyboardReturnKeyHandler : NSObject <UITextFieldDelegate, UITextViewDelegate>
+/// <hr/>
+/// <h2>MARK: Settings</h2>
+/// \code
+/// Delegate of textField/textView.
+///
+/// \endcode
+@property (nonatomic, weak) id <UITextFieldDelegate, UITextViewDelegate> _Nullable delegate;
+/// Set the last textfield return key type. Default is UIReturnKeyDefault.
+@property (nonatomic) UIReturnKeyType lastTextFieldReturnKeyType;
+/// <hr/>
+/// <h2>MARK: Initialization/Deinitialization</h2>
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+/// Add all the textFields available in UIViewController’s view.
+- (nonnull instancetype)initWithController:(UIViewController * _Nonnull)controller OBJC_DESIGNATED_INITIALIZER;
+/// <hr/>
+/// <h2>MARK: Registering/Unregistering textFieldView</h2>
+/// \code
+/// Should pass UITextField/UITextView intance. Assign textFieldView delegate to self, change it's returnKeyType.
+///
+/// @param view UITextField/UITextView object to register.
+///
+/// \endcode
+- (void)addTextFieldView:(UIView * _Nonnull)view;
+/// Should pass UITextField/UITextView intance. Restore it’s textFieldView delegate and it’s returnKeyType.
+/// @param view UITextField/UITextView object to unregister.
+- (void)removeTextFieldView:(UIView * _Nonnull)view;
+/// Add all the UITextField/UITextView responderView’s.
+/// @param view UIView object to register all it’s responder subviews.
+- (void)addResponderFromView:(UIView * _Nonnull)view;
+/// Remove all the UITextField/UITextView responderView’s.
+/// @param view UIView object to unregister all it’s responder subviews.
+- (void)removeResponderFromView:(UIView * _Nonnull)view;
+/// <hr/>
+/// <h2>MARK: UITextField/UITextView delegates</h2>
+- (BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldEndEditing:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField reason:(UITextFieldDidEndEditingReason)reason SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldClear:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textViewShouldBeginEditing:(UITextView * _Nonnull)textView SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textViewShouldEndEditing:(UITextView * _Nonnull)textView SWIFT_WARN_UNUSED_RESULT;
+- (void)textViewDidBeginEditing:(UITextView * _Nonnull)textView;
+- (void)textViewDidEndEditing:(UITextView * _Nonnull)textView;
+- (BOOL)textView:(UITextView * _Nonnull)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString * _Nonnull)text SWIFT_WARN_UNUSED_RESULT;
+- (void)textViewDidChange:(UITextView * _Nonnull)textView;
+- (void)textViewDidChangeSelection:(UITextView * _Nonnull)textView;
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithURL:(NSURL * _Nonnull)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithTextAttachment:(NSTextAttachment * _Nonnull)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithURL:(NSURL * _Nonnull)URL inRange:(NSRange)characterRange SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,deprecated=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithTextAttachment:(NSTextAttachment * _Nonnull)textAttachment inRange:(NSRange)characterRange SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,deprecated=10.0);
+@end
+
+/// <code>IQPreviousNextDisplayModeDefault</code>
+/// Show NextPrevious when there are more than 1 textField otherwise hide.
+/// <code>IQPreviousNextDisplayModeAlwaysHide</code>
+/// Do not show NextPrevious buttons in any case.
+/// <code>IQPreviousNextDisplayModeAlwaysShow</code>
+/// Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+typedef SWIFT_ENUM(NSInteger, IQPreviousNextDisplayMode, closed) {
+  IQPreviousNextDisplayModeDefault = 0,
+  IQPreviousNextDisplayModeAlwaysHide = 1,
+  IQPreviousNextDisplayModeAlwaysShow = 2,
+};
+
+
+SWIFT_CLASS("_TtC7UISwift18IQPreviousNextView")
+@interface IQPreviousNextView : UIView
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSTextContainer;
+@class NSAttributedString;
+
+/// @abstract UITextView with placeholder support
+SWIFT_CLASS("_TtC7UISwift10IQTextView")
+@interface IQTextView : UITextView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer * _Nullable)textContainer OBJC_DESIGNATED_INITIALIZER;
+- (void)awakeFromNib;
+/// @abstract To set textView’s placeholder text color.
+@property (nonatomic, strong) UIColor * _Nullable placeholderTextColor;
+/// @abstract To set textView’s placeholder text. Default is nil.
+@property (nonatomic, copy) NSString * _Nullable placeholder;
+- (void)layoutSubviews;
+@property (nonatomic, copy) NSString * _Null_unspecified text;
+@property (nonatomic, strong) NSAttributedString * _Null_unspecified attributedText;
+@property (nonatomic, strong) UIFont * _Nullable font;
+@property (nonatomic) NSTextAlignment textAlignment;
+@property (nonatomic, strong) id <UITextViewDelegate> _Nullable delegate;
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+@end
+
+
+SWIFT_CLASS("_TtC7UISwift20IQTitleBarButtonItem")
+@interface IQTitleBarButtonItem : IQBarButtonItem
+@property (nonatomic, strong) UIFont * _Nullable titleFont;
+@property (nonatomic, copy) NSString * _Nullable title;
+/// titleColor to be used for displaying button text when displaying title (disabled state).
+@property (nonatomic, strong) UIColor * _Nullable titleColor;
+/// selectableTitleColor to be used for displaying button text when button is enabled.
+@property (nonatomic, strong) UIColor * _Nullable selectableTitleColor;
+/// Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
+@property (nonatomic, strong) IQInvocation * _Nullable invocation;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nonnull instancetype)initWithTitle:(NSString * _Nullable)title;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// @abstract   IQToolbar for IQKeyboardManager.
+SWIFT_CLASS("_TtC7UISwift9IQToolbar")
+@interface IQToolbar : UIToolbar <UIInputViewAudioFeedback>
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull previousBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull nextBarButton;
+@property (nonatomic, strong) IQTitleBarButtonItem * _Nonnull titleBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull doneBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull fixedSpaceBarButton;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (CGSize)sizeThatFits:(CGSize)size SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, strong) UIColor * _Null_unspecified tintColor;
+@property (nonatomic) UIBarStyle barStyle;
+- (void)layoutSubviews;
+@property (nonatomic, readonly) BOOL enableInputClicksWhenVisible;
+@end
+
 
 SWIFT_PROTOCOL("_TtP7UISwift18IRadarChartDataSet_")
 @protocol IRadarChartDataSet <ILineRadarChartDataSet>
@@ -8354,6 +9202,8 @@ SWIFT_CLASS_NAMED("MoveViewJob")
 @end
 
 
+
+
 /// A simple abstraction over UIAccessibilityElement and NSAccessibilityElement.
 SWIFT_CLASS("_TtC7UISwift24NSUIAccessibilityElement")
 @interface NSUIAccessibilityElement : UIAccessibilityElement
@@ -8373,6 +9223,32 @@ SWIFT_CLASS("_TtC7UISwift24NSUIAccessibilityElement")
 - (NSInteger)accessibilityElementCount SWIFT_WARN_UNUSED_RESULT;
 - (id _Nullable)accessibilityElementAtIndex:(NSInteger)index SWIFT_WARN_UNUSED_RESULT;
 - (NSInteger)indexOfAccessibilityElement:(id _Nonnull)element SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// Activity indicator view with nice animations
+SWIFT_CLASS("_TtC7UISwift23NVActivityIndicatorView")
+@interface NVActivityIndicatorView : UIView
+/// Color of activity indicator view.
+@property (nonatomic, strong) UIColor * _Nonnull color;
+/// Padding of activity indicator view.
+@property (nonatomic) CGFloat padding;
+/// Returns an object initialized from data in a given unarchiver.
+/// self, initialized using the data in decoder.
+/// \param decoder an unarchiver object.
+///
+///
+/// returns:
+/// self, initialized using the data in decoder.
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Returns the natural size for the receiving view, considering only properties of the view itself.
+/// A size indicating the natural size for the receiving view based on its intrinsic properties.
+///
+/// returns:
+/// A size indicating the natural size for the receiving view based on its intrinsic properties.
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+@property (nonatomic) CGRect bounds;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
 
 
@@ -8581,7 +9457,6 @@ SWIFT_CLASS("_TtC7UISwift21PieRadarChartViewBase")
 - (void)stopDeceleration;
 @end
 
-@class NSAttributedString;
 
 /// View that represents a pie chart. Draws cake like slices.
 SWIFT_CLASS("_TtC7UISwift12PieChartView")
@@ -8948,6 +9823,14 @@ SWIFT_CLASS("_TtC7UISwift21TriangleShapeRenderer")
 
 
 
+@interface UIImage (SWIFT_EXTENSION(UISwift))
++ (UIImage * _Nullable)keyboardPreviousiOS9Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextiOS9Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardPreviousiOS10Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextiOS10Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardPreviousImage SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextImage SWIFT_WARN_UNUSED_RESULT;
+@end
 
 
 
@@ -8960,6 +9843,119 @@ SWIFT_CLASS("_TtC7UISwift21TriangleShapeRenderer")
 
 
 
+@interface UIScrollView (SWIFT_EXTENSION(UISwift))
+/// If YES, then scrollview will ignore scrolling (simply not scroll it) for adjusting textfield position. Default is NO.
+@property (nonatomic) BOOL shouldIgnoreScrollingAdjustment;
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+@property (nonatomic) BOOL shouldRestoreScrollViewContentOffset;
+@end
+
+
+
+
+
+
+
+
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// <hr/>
+/// <h2>MARK: viewControllers</h2>
+/// \code
+/// Returns the UIViewController object that manages the receiver.
+///
+/// \endcode
+- (UIViewController * _Nullable)viewContainingController SWIFT_WARN_UNUSED_RESULT;
+/// Returns the topMost UIViewController object in hierarchy.
+- (UIViewController * _Nullable)topMostController SWIFT_WARN_UNUSED_RESULT;
+/// Returns the UIViewController object that is actually the parent of this object. Most of the time it’s the viewController object which actually contains it, but result may be different if it’s viewController is added as childViewController of another viewController.
+- (UIViewController * _Nullable)parentContainerViewController SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: Superviews/Subviews/Siglings</h2>
+/// \code
+/// Returns the superView of provided class type.
+///
+///  
+///  @param classType class type of the object which is to be search in above hierarchy and return
+///  
+///  @param belowView view object in upper hierarchy where method should stop searching and return nil
+///
+/// \endcode
+- (UIView * _Nullable)superviewOfClassType:(SWIFT_METATYPE(UIView) _Nonnull)classType belowView:(UIView * _Nullable)belowView SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+@property (nonatomic) CGFloat keyboardDistanceFromTextField;
+/// If shouldIgnoreSwitchingByNextPrevious is true then library will ignore this textField/textView while moving to other textField/textView using keyboard toolbar next previous buttons. Default is false
+@property (nonatomic) BOOL ignoreSwitchingByNextPrevious;
+/// Override resigns Keyboard on touching outside of UITextField/View behaviour for this particular textField.
+@property (nonatomic) enum IQEnableMode shouldResignOnTouchOutsideMode;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// <hr/>
+/// <h2>MARK: Toolbar</h2>
+/// \code
+///  IQToolbar references for better customization control.
+///
+/// \endcode
+@property (nonatomic, readonly, strong) IQToolbar * _Nonnull keyboardToolbar;
+/// <hr/>
+/// <h2>MARK: Toolbar title</h2>
+/// \code
+/// If `shouldHideToolbarPlaceholder` is YES, then title will not be added to the toolbar. Default to NO.
+///
+/// \endcode
+@property (nonatomic) BOOL shouldHideToolbarPlaceholder;
+/// <code>toolbarPlaceholder</code> to override default <code>placeholder</code> text when drawing text on toolbar.
+@property (nonatomic, copy) NSString * _Nullable toolbarPlaceholder;
+/// <code>drawingToolbarPlaceholder</code> will be actual text used to draw on toolbar. This would either <code>placeholder</code> or <code>toolbarPlaceholder</code>.
+@property (nonatomic, readonly, copy) NSString * _Nullable drawingToolbarPlaceholder;
+/// <hr/>
+/// <h2>MARK: Common</h2>
+- (void)addKeyboardToolbarWithTargetWithTarget:(id _Nullable)target titleText:(NSString * _Nullable)titleText rightBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)rightBarButtonConfiguration previousBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)previousBarButtonConfiguration nextBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)nextBarButtonConfiguration;
+/// <hr/>
+/// <h2>MARK: Right</h2>
+- (void)addDoneOnKeyboardWithTarget:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addDoneOnKeyboardWithTarget:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+- (void)addRightButtonOnKeyboardWithImage:(UIImage * _Nonnull)image target:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithImage:(UIImage * _Nonnull)image target:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+- (void)addRightButtonOnKeyboardWithText:(NSString * _Nonnull)text target:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithText:(NSString * _Nonnull)text target:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+/// <hr/>
+/// <h2>MARK: Right/Left</h2>
+- (void)addCancelDoneOnKeyboardWithTarget:(id _Nullable)target cancelAction:(SEL _Nonnull)cancelAction doneAction:(SEL _Nonnull)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonTitle:(NSString * _Nonnull)leftButtonTitle rightButtonTitle:(NSString * _Nonnull)rightButtonTitle leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonImage:(UIImage * _Nonnull)leftButtonImage rightButtonImage:(UIImage * _Nonnull)rightButtonImage leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addCancelDoneOnKeyboardWithTarget:(id _Nullable)target cancelAction:(SEL _Nonnull)cancelAction doneAction:(SEL _Nonnull)doneAction titleText:(NSString * _Nullable)titleText;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonTitle:(NSString * _Nonnull)leftButtonTitle rightButtonTitle:(NSString * _Nonnull)rightButtonTitle leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonImage:(UIImage * _Nonnull)leftButtonImage rightButtonImage:(UIImage * _Nonnull)rightButtonImage leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+/// <hr/>
+/// <h2>MARK: Previous/Next/Right</h2>
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id _Nullable)target previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction doneAction:(SEL _Nonnull)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonImage:(UIImage * _Nonnull)rightButtonImage previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonTitle:(NSString * _Nonnull)rightButtonTitle previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id _Nullable)target previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction doneAction:(SEL _Nonnull)doneAction titleText:(NSString * _Nullable)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonImage:(UIImage * _Nonnull)rightButtonImage previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonTitle:(NSString * _Nonnull)rightButtonTitle previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+@end
+
+
+@interface UIViewController (SWIFT_EXTENSION(UISwift))
+- (UIViewController * _Nullable)parentIQContainerViewController SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class NSLayoutConstraint;
+
+@interface UIViewController (SWIFT_EXTENSION(UISwift))
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+/// @deprecated    Due to change in core-logic of handling distance between textField and keyboard distance, this layout contraint tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint * _Nullable IQLayoutGuideConstraint SWIFT_DEPRECATED_MSG("Due to change in core-logic of handling distance between textField and keyboard distance, this layout contraint tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview.");
+@end
 
 
 /// Class that contains information about the charts current viewport settings, including offsets, scale & translation levels, …
@@ -12603,6 +13599,356 @@ SWIFT_PROTOCOL("_TtP7UISwift16IPieChartDataSet_")
 @property (nonatomic, strong) UIColor * _Nullable highlightColor;
 @end
 
+/// <hr/>
+/// <h2>MARK: IQAutoToolbarManageBehaviour</h2>
+/// <code>IQAutoToolbarBySubviews</code>
+/// Creates Toolbar according to subview’s hirarchy of Textfield’s in view.
+/// <code>IQAutoToolbarByTag</code>
+/// Creates Toolbar according to tag property of TextField’s.
+/// <code>IQAutoToolbarByPosition</code>
+/// Creates Toolbar according to the y,x position of textField in it’s superview coordinate.
+typedef SWIFT_ENUM(NSInteger, IQAutoToolbarManageBehaviour, closed) {
+  IQAutoToolbarManageBehaviourBySubviews = 0,
+  IQAutoToolbarManageBehaviourByTag = 1,
+  IQAutoToolbarManageBehaviourByPosition = 2,
+};
+
+@class IQInvocation;
+
+SWIFT_CLASS("_TtC7UISwift15IQBarButtonItem")
+@interface IQBarButtonItem : UIBarButtonItem
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, strong) UIColor * _Nullable tintColor;
+/// Additional target & action to do get callback action. Note that setting custom target & selector doesn’t affect native functionality, this is just an additional target to get a callback.
+/// @param target Target object.
+/// @param action Target Selector.
+- (void)setTarget:(id _Nullable)target action:(SEL _Nullable)action;
+/// Customized Invocation to be called when button is pressed. invocation is internally created using setTarget:action: method.
+@property (nonatomic, strong) IQInvocation * _Nullable invocation;
+@end
+
+
+/// IQBarButtonItemConfiguration for creating toolbar with bar button items
+SWIFT_CLASS("_TtC7UISwift28IQBarButtonItemConfiguration")
+@interface IQBarButtonItemConfiguration : NSObject
+- (nonnull instancetype)initWithBarButtonSystemItem:(UIBarButtonSystemItem)barButtonSystemItem action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithImage:(UIImage * _Nonnull)image action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithTitle:(NSString * _Nonnull)title action:(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, strong) UIImage * _Nullable image;
+@property (nonatomic, readonly, copy) NSString * _Nullable title;
+@property (nonatomic, readonly) SEL _Nullable action;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// <code>IQEnableModeDefault</code>
+/// Pick default settings.
+/// <code>IQEnableModeEnabled</code>
+/// setting is enabled.
+/// <code>IQEnableModeDisabled</code>
+/// setting is disabled.
+typedef SWIFT_ENUM(NSInteger, IQEnableMode, closed) {
+  IQEnableModeDefault = 0,
+  IQEnableModeEnabled = 1,
+  IQEnableModeDisabled = 2,
+};
+
+
+SWIFT_CLASS("_TtC7UISwift12IQInvocation")
+@interface IQInvocation : NSObject
+@property (nonatomic, weak) id _Nullable target;
+@property (nonatomic) SEL _Nonnull action;
+- (nonnull instancetype)init:(id _Nonnull)target :(SEL _Nonnull)action OBJC_DESIGNATED_INITIALIZER;
+- (void)invokeFrom:(id _Nonnull)from;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+enum IQPreviousNextDisplayMode : NSInteger;
+@class UITapGestureRecognizer;
+@class UIViewController;
+
+/// <hr/>
+/// <h2>MARK: IQToolbar tags</h2>
+/// Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
+SWIFT_CLASS("_TtC7UISwift17IQKeyboardManager")
+@interface IQKeyboardManager : NSObject <UIGestureRecognizerDelegate>
+/// Enable/disable managing distance between keyboard and textField. Default is YES(Enabled when class loads in <code>+(void)load</code> method).
+@property (nonatomic) BOOL enable;
+/// To set keyboard distance from textField. can’t be less than zero. Default is 10.0.
+@property (nonatomic) CGFloat keyboardDistanceFromTextField;
+/// Boolean to know if keyboard is showing.
+@property (nonatomic, readonly) BOOL keyboardShowing;
+/// moved distance to the top used to maintain distance between keyboard and textField. Most of the time this will be a positive value.
+@property (nonatomic, readonly) CGFloat movedDistance;
+/// Returns the default singleton instance.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) IQKeyboardManager * _Nonnull shared;)
++ (IQKeyboardManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: IQToolbar handling</h2>
+/// \code
+/// Automatic add the IQToolbar functionality. Default is YES.
+///
+/// \endcode
+@property (nonatomic) BOOL enableAutoToolbar;
+/// /**
+/// IQAutoToolbarBySubviews:   Creates Toolbar according to subview’s hirarchy of Textfield’s in view.
+/// IQAutoToolbarByTag:        Creates Toolbar according to tag property of TextField’s.
+/// IQAutoToolbarByPosition:   Creates Toolbar according to the y,x position of textField in it’s superview coordinate.
+/// Default is IQAutoToolbarBySubviews.
+/// */
+/// AutoToolbar managing behaviour. Default is IQAutoToolbarBySubviews.
+@property (nonatomic) enum IQAutoToolbarManageBehaviour toolbarManageBehaviour;
+/// If YES, then uses textField’s tintColor property for IQToolbar, otherwise tint color is black. Default is NO.
+@property (nonatomic) BOOL shouldToolbarUsesTextFieldTintColor;
+/// This is used for toolbar.tintColor when textfield.keyboardAppearance is UIKeyboardAppearanceDefault. If shouldToolbarUsesTextFieldTintColor is YES then this property is ignored. Default is nil and uses black color.
+@property (nonatomic, strong) UIColor * _Nullable toolbarTintColor;
+/// This is used for toolbar.barTintColor. Default is nil and uses white color.
+@property (nonatomic, strong) UIColor * _Nullable toolbarBarTintColor;
+/// IQPreviousNextDisplayModeDefault:      Show NextPrevious when there are more than 1 textField otherwise hide.
+/// IQPreviousNextDisplayModeAlwaysHide:   Do not show NextPrevious buttons in any case.
+/// IQPreviousNextDisplayModeAlwaysShow:   Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+@property (nonatomic) enum IQPreviousNextDisplayMode previousNextDisplayMode;
+/// Toolbar previous/next/done button icon, If nothing is provided then check toolbarDoneBarButtonItemText to draw done button.
+@property (nonatomic, strong) UIImage * _Nullable toolbarPreviousBarButtonItemImage;
+@property (nonatomic, strong) UIImage * _Nullable toolbarNextBarButtonItemImage;
+@property (nonatomic, strong) UIImage * _Nullable toolbarDoneBarButtonItemImage;
+/// Toolbar previous/next/done button text, If nothing is provided then system default ‘UIBarButtonSystemItemDone’ will be used.
+@property (nonatomic, copy) NSString * _Nullable toolbarPreviousBarButtonItemText;
+@property (nonatomic, copy) NSString * _Nullable toolbarNextBarButtonItemText;
+@property (nonatomic, copy) NSString * _Nullable toolbarDoneBarButtonItemText;
+/// If YES, then it add the textField’s placeholder text on IQToolbar. Default is YES.
+@property (nonatomic) BOOL shouldShowToolbarPlaceholder;
+/// Placeholder Font. Default is nil.
+@property (nonatomic, strong) UIFont * _Nullable placeholderFont;
+/// Placeholder Color. Default is nil. Which means lightGray
+@property (nonatomic, strong) UIColor * _Nullable placeholderColor;
+/// Placeholder Button Color when it’s treated as button. Default is nil. Which means iOS Blue for light toolbar and Yellow for dark toolbar
+@property (nonatomic, strong) UIColor * _Nullable placeholderButtonColor;
+/// <hr/>
+/// <h2>MARK: UIKeyboard appearance overriding</h2>
+/// \code
+/// Override the keyboardAppearance for all textField/textView. Default is NO.
+///
+/// \endcode
+@property (nonatomic) BOOL overrideKeyboardAppearance;
+/// If overrideKeyboardAppearance is YES, then all the textField keyboardAppearance is set using this property.
+@property (nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property (nonatomic) BOOL shouldResignOnTouchOutside;
+/// TapGesture to resign keyboard on view’s touch. It’s a readonly property and exposed only for adding/removing dependencies if your added gesture does have collision with this one
+@property (nonatomic, strong) UITapGestureRecognizer * _Nonnull resignFirstResponderGesture;
+/// Resigns currently first responder field.
+- (BOOL)resignFirstResponder;
+/// Returns YES if can navigate to previous responder textField/textView, otherwise NO.
+@property (nonatomic, readonly) BOOL canGoPrevious;
+/// Returns YES if can navigate to next responder textField/textView, otherwise NO.
+@property (nonatomic, readonly) BOOL canGoNext;
+/// Navigate to previous responder textField/textView.
+- (BOOL)goPrevious;
+/// Navigate to next responder textField/textView.
+- (BOOL)goNext;
+/// Note: returning YES is guaranteed to allow simultaneous recognition. returning NO is not guaranteed to prevent simultaneous recognition, as the other gesture’s delegate may return YES.
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer * _Nonnull)otherGestureRecognizer SWIFT_WARN_UNUSED_RESULT;
+/// To not detect touch events in a subclass of UIControl, these may have added their own selector for specific work
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldReceiveTouch:(UITouch * _Nonnull)touch SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: UISound handling</h2>
+/// \code
+/// If YES, then it plays inputClick sound on next/previous/done click.
+///
+/// \endcode
+@property (nonatomic) BOOL shouldPlayInputClicks;
+/// <hr/>
+/// <h2>MARK: UIAnimation handling</h2>
+/// \code
+/// If YES, then calls 'setNeedsLayout' and 'layoutIfNeeded' on any frame update of to viewController's view.
+///
+/// \endcode
+@property (nonatomic) BOOL layoutIfNeededOnUpdate;
+/// <hr/>
+/// <h2>MARK: Class Level disabling methods</h2>
+/// \code
+///  Disable distance handling within the scope of disabled distance handling viewControllers classes. Within this scope, 'enabled' property is ignored. Class should be kind of UIViewController.
+///
+/// \endcode
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledDistanceHandlingClasses;
+/// Enable distance handling within the scope of enabled distance handling viewControllers classes. Within this scope, ‘enabled’ property is ignored. Class should be kind of UIViewController. If same Class is added in disabledDistanceHandlingClasses list, then enabledDistanceHandlingClasses will be ignored.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledDistanceHandlingClasses;
+/// Disable automatic toolbar creation within the scope of disabled toolbar viewControllers classes. Within this scope, ‘enableAutoToolbar’ property is ignored. Class should be kind of UIViewController.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledToolbarClasses;
+/// Enable automatic toolbar creation within the scope of enabled toolbar viewControllers classes. Within this scope, ‘enableAutoToolbar’ property is ignored. Class should be kind of UIViewController. If same Class is added in disabledToolbarClasses list, then enabledToolbarClasses will be ignore.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledToolbarClasses;
+/// Allowed subclasses of UIView to add all inner textField, this will allow to navigate between textField contains in different superview. Class should be kind of UIView.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIView)> * _Nonnull toolbarPreviousNextAllowedClasses;
+/// Disabled classes to ignore ‘shouldResignOnTouchOutside’ property, Class should be kind of UIViewController.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull disabledTouchResignedClasses;
+/// Enabled classes to forcefully enable ‘shouldResignOnTouchOutsite’ property. Class should be kind of UIViewController. If same Class is added in disabledTouchResignedClasses list, then enabledTouchResignedClasses will be ignored.
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIViewController)> * _Nonnull enabledTouchResignedClasses;
+/// if shouldResignOnTouchOutside is enabled then you can customise the behaviour to not recognise gesture touches on some specific view subclasses. Class should be kind of UIView. Default is [UIControl, UINavigationBar]
+@property (nonatomic, copy) NSArray<SWIFT_METATYPE(UIView)> * _Nonnull touchResignedGestureIgnoreClasses;
+/// <hr/>
+/// <h2>MARK: Third Party Library support
+/// Add TextField/TextView Notifications customised Notifications. For example while using YYTextView https://github.com/ibireme/YYText</h2>
+/// \code
+/// Add/Remove customised Notification for third party customised TextField/TextView. Please be aware that the Notification object must be idential to UITextField/UITextView Notification objects and customised TextField/TextView support must be idential to UITextField/UITextView.
+/// @param didBeginEditingNotificationName This should be identical to UITextViewTextDidBeginEditingNotification
+/// @param didEndEditingNotificationName This should be identical to UITextViewTextDidEndEditingNotification
+///
+/// \endcode
+- (void)registerTextFieldViewClass:(SWIFT_METATYPE(UIView) _Nonnull)aClass didBeginEditingNotificationName:(NSString * _Nonnull)didBeginEditingNotificationName didEndEditingNotificationName:(NSString * _Nonnull)didEndEditingNotificationName;
+- (void)unregisterTextFieldViewClass:(SWIFT_METATYPE(UIView) _Nonnull)aClass didBeginEditingNotificationName:(NSString * _Nonnull)didBeginEditingNotificationName didEndEditingNotificationName:(NSString * _Nonnull)didEndEditingNotificationName;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (void)reloadLayoutIfNeeded;
+/// reloadInputViews to reload toolbar buttons enable/disable state on the fly Enhancement ID #434.
+- (void)reloadInputViews;
+/// <hr/>
+/// <h2>MARK: Debugging & Developer options</h2>
+@property (nonatomic) BOOL enableDebugging;
+/// @warning Use below methods to completely enable/disable notifications registered by library internally. Please keep in mind that library is totally dependent on NSNotification of UITextField, UITextField, Keyboard etc. If you do unregisterAllNotifications then library will not work at all. You should only use below methods if you want to completedly disable all library functions. You should use below methods at your own risk.
+- (void)registerAllNotifications;
+- (void)unregisterAllNotifications;
+@end
+
+@class UITextField;
+@class UITextView;
+@class NSTextAttachment;
+
+/// Manages the return key to work like next/done in a view hierarchy.
+SWIFT_CLASS("_TtC7UISwift26IQKeyboardReturnKeyHandler")
+@interface IQKeyboardReturnKeyHandler : NSObject <UITextFieldDelegate, UITextViewDelegate>
+/// <hr/>
+/// <h2>MARK: Settings</h2>
+/// \code
+/// Delegate of textField/textView.
+///
+/// \endcode
+@property (nonatomic, weak) id <UITextFieldDelegate, UITextViewDelegate> _Nullable delegate;
+/// Set the last textfield return key type. Default is UIReturnKeyDefault.
+@property (nonatomic) UIReturnKeyType lastTextFieldReturnKeyType;
+/// <hr/>
+/// <h2>MARK: Initialization/Deinitialization</h2>
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+/// Add all the textFields available in UIViewController’s view.
+- (nonnull instancetype)initWithController:(UIViewController * _Nonnull)controller OBJC_DESIGNATED_INITIALIZER;
+/// <hr/>
+/// <h2>MARK: Registering/Unregistering textFieldView</h2>
+/// \code
+/// Should pass UITextField/UITextView intance. Assign textFieldView delegate to self, change it's returnKeyType.
+///
+/// @param view UITextField/UITextView object to register.
+///
+/// \endcode
+- (void)addTextFieldView:(UIView * _Nonnull)view;
+/// Should pass UITextField/UITextView intance. Restore it’s textFieldView delegate and it’s returnKeyType.
+/// @param view UITextField/UITextView object to unregister.
+- (void)removeTextFieldView:(UIView * _Nonnull)view;
+/// Add all the UITextField/UITextView responderView’s.
+/// @param view UIView object to register all it’s responder subviews.
+- (void)addResponderFromView:(UIView * _Nonnull)view;
+/// Remove all the UITextField/UITextView responderView’s.
+/// @param view UIView object to unregister all it’s responder subviews.
+- (void)removeResponderFromView:(UIView * _Nonnull)view;
+/// <hr/>
+/// <h2>MARK: UITextField/UITextView delegates</h2>
+- (BOOL)textFieldShouldBeginEditing:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldEndEditing:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField reason:(UITextFieldDidEndEditingReason)reason SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldClear:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textViewShouldBeginEditing:(UITextView * _Nonnull)textView SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)textViewShouldEndEditing:(UITextView * _Nonnull)textView SWIFT_WARN_UNUSED_RESULT;
+- (void)textViewDidBeginEditing:(UITextView * _Nonnull)textView;
+- (void)textViewDidEndEditing:(UITextView * _Nonnull)textView;
+- (BOOL)textView:(UITextView * _Nonnull)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString * _Nonnull)text SWIFT_WARN_UNUSED_RESULT;
+- (void)textViewDidChange:(UITextView * _Nonnull)textView;
+- (void)textViewDidChangeSelection:(UITextView * _Nonnull)textView;
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithURL:(NSURL * _Nonnull)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithTextAttachment:(NSTextAttachment * _Nonnull)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithURL:(NSURL * _Nonnull)URL inRange:(NSRange)characterRange SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,deprecated=10.0);
+- (BOOL)textView:(UITextView * _Nonnull)aTextView shouldInteractWithTextAttachment:(NSTextAttachment * _Nonnull)textAttachment inRange:(NSRange)characterRange SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,deprecated=10.0);
+@end
+
+/// <code>IQPreviousNextDisplayModeDefault</code>
+/// Show NextPrevious when there are more than 1 textField otherwise hide.
+/// <code>IQPreviousNextDisplayModeAlwaysHide</code>
+/// Do not show NextPrevious buttons in any case.
+/// <code>IQPreviousNextDisplayModeAlwaysShow</code>
+/// Always show nextPrevious buttons, if there are more than 1 textField then both buttons will be visible but will be shown as disabled.
+typedef SWIFT_ENUM(NSInteger, IQPreviousNextDisplayMode, closed) {
+  IQPreviousNextDisplayModeDefault = 0,
+  IQPreviousNextDisplayModeAlwaysHide = 1,
+  IQPreviousNextDisplayModeAlwaysShow = 2,
+};
+
+
+SWIFT_CLASS("_TtC7UISwift18IQPreviousNextView")
+@interface IQPreviousNextView : UIView
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSTextContainer;
+@class NSAttributedString;
+
+/// @abstract UITextView with placeholder support
+SWIFT_CLASS("_TtC7UISwift10IQTextView")
+@interface IQTextView : UITextView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer * _Nullable)textContainer OBJC_DESIGNATED_INITIALIZER;
+- (void)awakeFromNib;
+/// @abstract To set textView’s placeholder text color.
+@property (nonatomic, strong) UIColor * _Nullable placeholderTextColor;
+/// @abstract To set textView’s placeholder text. Default is nil.
+@property (nonatomic, copy) NSString * _Nullable placeholder;
+- (void)layoutSubviews;
+@property (nonatomic, copy) NSString * _Null_unspecified text;
+@property (nonatomic, strong) NSAttributedString * _Null_unspecified attributedText;
+@property (nonatomic, strong) UIFont * _Nullable font;
+@property (nonatomic) NSTextAlignment textAlignment;
+@property (nonatomic, strong) id <UITextViewDelegate> _Nullable delegate;
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+@end
+
+
+SWIFT_CLASS("_TtC7UISwift20IQTitleBarButtonItem")
+@interface IQTitleBarButtonItem : IQBarButtonItem
+@property (nonatomic, strong) UIFont * _Nullable titleFont;
+@property (nonatomic, copy) NSString * _Nullable title;
+/// titleColor to be used for displaying button text when displaying title (disabled state).
+@property (nonatomic, strong) UIColor * _Nullable titleColor;
+/// selectableTitleColor to be used for displaying button text when button is enabled.
+@property (nonatomic, strong) UIColor * _Nullable selectableTitleColor;
+/// Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
+@property (nonatomic, strong) IQInvocation * _Nullable invocation;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nonnull instancetype)initWithTitle:(NSString * _Nullable)title;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// @abstract   IQToolbar for IQKeyboardManager.
+SWIFT_CLASS("_TtC7UISwift9IQToolbar")
+@interface IQToolbar : UIToolbar <UIInputViewAudioFeedback>
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull previousBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull nextBarButton;
+@property (nonatomic, strong) IQTitleBarButtonItem * _Nonnull titleBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull doneBarButton;
+@property (nonatomic, strong) IQBarButtonItem * _Nonnull fixedSpaceBarButton;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (CGSize)sizeThatFits:(CGSize)size SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, strong) UIColor * _Null_unspecified tintColor;
+@property (nonatomic) UIBarStyle barStyle;
+- (void)layoutSubviews;
+@property (nonatomic, readonly) BOOL enableInputClicksWhenVisible;
+@end
+
 
 SWIFT_PROTOCOL("_TtP7UISwift18IRadarChartDataSet_")
 @protocol IRadarChartDataSet <ILineRadarChartDataSet>
@@ -13004,6 +14350,8 @@ SWIFT_CLASS_NAMED("MoveViewJob")
 @end
 
 
+
+
 /// A simple abstraction over UIAccessibilityElement and NSAccessibilityElement.
 SWIFT_CLASS("_TtC7UISwift24NSUIAccessibilityElement")
 @interface NSUIAccessibilityElement : UIAccessibilityElement
@@ -13023,6 +14371,32 @@ SWIFT_CLASS("_TtC7UISwift24NSUIAccessibilityElement")
 - (NSInteger)accessibilityElementCount SWIFT_WARN_UNUSED_RESULT;
 - (id _Nullable)accessibilityElementAtIndex:(NSInteger)index SWIFT_WARN_UNUSED_RESULT;
 - (NSInteger)indexOfAccessibilityElement:(id _Nonnull)element SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// Activity indicator view with nice animations
+SWIFT_CLASS("_TtC7UISwift23NVActivityIndicatorView")
+@interface NVActivityIndicatorView : UIView
+/// Color of activity indicator view.
+@property (nonatomic, strong) UIColor * _Nonnull color;
+/// Padding of activity indicator view.
+@property (nonatomic) CGFloat padding;
+/// Returns an object initialized from data in a given unarchiver.
+/// self, initialized using the data in decoder.
+/// \param decoder an unarchiver object.
+///
+///
+/// returns:
+/// self, initialized using the data in decoder.
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Returns the natural size for the receiving view, considering only properties of the view itself.
+/// A size indicating the natural size for the receiving view based on its intrinsic properties.
+///
+/// returns:
+/// A size indicating the natural size for the receiving view based on its intrinsic properties.
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+@property (nonatomic) CGRect bounds;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
 
 
@@ -13231,7 +14605,6 @@ SWIFT_CLASS("_TtC7UISwift21PieRadarChartViewBase")
 - (void)stopDeceleration;
 @end
 
-@class NSAttributedString;
 
 /// View that represents a pie chart. Draws cake like slices.
 SWIFT_CLASS("_TtC7UISwift12PieChartView")
@@ -13598,6 +14971,14 @@ SWIFT_CLASS("_TtC7UISwift21TriangleShapeRenderer")
 
 
 
+@interface UIImage (SWIFT_EXTENSION(UISwift))
++ (UIImage * _Nullable)keyboardPreviousiOS9Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextiOS9Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardPreviousiOS10Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextiOS10Image SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardPreviousImage SWIFT_WARN_UNUSED_RESULT;
++ (UIImage * _Nullable)keyboardNextImage SWIFT_WARN_UNUSED_RESULT;
+@end
 
 
 
@@ -13610,6 +14991,119 @@ SWIFT_CLASS("_TtC7UISwift21TriangleShapeRenderer")
 
 
 
+@interface UIScrollView (SWIFT_EXTENSION(UISwift))
+/// If YES, then scrollview will ignore scrolling (simply not scroll it) for adjusting textfield position. Default is NO.
+@property (nonatomic) BOOL shouldIgnoreScrollingAdjustment;
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+@property (nonatomic) BOOL shouldRestoreScrollViewContentOffset;
+@end
+
+
+
+
+
+
+
+
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// <hr/>
+/// <h2>MARK: viewControllers</h2>
+/// \code
+/// Returns the UIViewController object that manages the receiver.
+///
+/// \endcode
+- (UIViewController * _Nullable)viewContainingController SWIFT_WARN_UNUSED_RESULT;
+/// Returns the topMost UIViewController object in hierarchy.
+- (UIViewController * _Nullable)topMostController SWIFT_WARN_UNUSED_RESULT;
+/// Returns the UIViewController object that is actually the parent of this object. Most of the time it’s the viewController object which actually contains it, but result may be different if it’s viewController is added as childViewController of another viewController.
+- (UIViewController * _Nullable)parentContainerViewController SWIFT_WARN_UNUSED_RESULT;
+/// <hr/>
+/// <h2>MARK: Superviews/Subviews/Siglings</h2>
+/// \code
+/// Returns the superView of provided class type.
+///
+///  
+///  @param classType class type of the object which is to be search in above hierarchy and return
+///  
+///  @param belowView view object in upper hierarchy where method should stop searching and return nil
+///
+/// \endcode
+- (UIView * _Nullable)superviewOfClassType:(SWIFT_METATYPE(UIView) _Nonnull)classType belowView:(UIView * _Nullable)belowView SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+@property (nonatomic) CGFloat keyboardDistanceFromTextField;
+/// If shouldIgnoreSwitchingByNextPrevious is true then library will ignore this textField/textView while moving to other textField/textView using keyboard toolbar next previous buttons. Default is false
+@property (nonatomic) BOOL ignoreSwitchingByNextPrevious;
+/// Override resigns Keyboard on touching outside of UITextField/View behaviour for this particular textField.
+@property (nonatomic) enum IQEnableMode shouldResignOnTouchOutsideMode;
+@end
+
+
+@interface UIView (SWIFT_EXTENSION(UISwift))
+/// <hr/>
+/// <h2>MARK: Toolbar</h2>
+/// \code
+///  IQToolbar references for better customization control.
+///
+/// \endcode
+@property (nonatomic, readonly, strong) IQToolbar * _Nonnull keyboardToolbar;
+/// <hr/>
+/// <h2>MARK: Toolbar title</h2>
+/// \code
+/// If `shouldHideToolbarPlaceholder` is YES, then title will not be added to the toolbar. Default to NO.
+///
+/// \endcode
+@property (nonatomic) BOOL shouldHideToolbarPlaceholder;
+/// <code>toolbarPlaceholder</code> to override default <code>placeholder</code> text when drawing text on toolbar.
+@property (nonatomic, copy) NSString * _Nullable toolbarPlaceholder;
+/// <code>drawingToolbarPlaceholder</code> will be actual text used to draw on toolbar. This would either <code>placeholder</code> or <code>toolbarPlaceholder</code>.
+@property (nonatomic, readonly, copy) NSString * _Nullable drawingToolbarPlaceholder;
+/// <hr/>
+/// <h2>MARK: Common</h2>
+- (void)addKeyboardToolbarWithTargetWithTarget:(id _Nullable)target titleText:(NSString * _Nullable)titleText rightBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)rightBarButtonConfiguration previousBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)previousBarButtonConfiguration nextBarButtonConfiguration:(IQBarButtonItemConfiguration * _Nullable)nextBarButtonConfiguration;
+/// <hr/>
+/// <h2>MARK: Right</h2>
+- (void)addDoneOnKeyboardWithTarget:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addDoneOnKeyboardWithTarget:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+- (void)addRightButtonOnKeyboardWithImage:(UIImage * _Nonnull)image target:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithImage:(UIImage * _Nonnull)image target:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+- (void)addRightButtonOnKeyboardWithText:(NSString * _Nonnull)text target:(id _Nullable)target action:(SEL _Nonnull)action shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightButtonOnKeyboardWithText:(NSString * _Nonnull)text target:(id _Nullable)target action:(SEL _Nonnull)action titleText:(NSString * _Nullable)titleText;
+/// <hr/>
+/// <h2>MARK: Right/Left</h2>
+- (void)addCancelDoneOnKeyboardWithTarget:(id _Nullable)target cancelAction:(SEL _Nonnull)cancelAction doneAction:(SEL _Nonnull)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonTitle:(NSString * _Nonnull)leftButtonTitle rightButtonTitle:(NSString * _Nonnull)rightButtonTitle leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonImage:(UIImage * _Nonnull)leftButtonImage rightButtonImage:(UIImage * _Nonnull)rightButtonImage leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addCancelDoneOnKeyboardWithTarget:(id _Nullable)target cancelAction:(SEL _Nonnull)cancelAction doneAction:(SEL _Nonnull)doneAction titleText:(NSString * _Nullable)titleText;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonTitle:(NSString * _Nonnull)leftButtonTitle rightButtonTitle:(NSString * _Nonnull)rightButtonTitle leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+- (void)addRightLeftOnKeyboardWithTarget:(id _Nullable)target leftButtonImage:(UIImage * _Nonnull)leftButtonImage rightButtonImage:(UIImage * _Nonnull)rightButtonImage leftButtonAction:(SEL _Nonnull)leftButtonAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+/// <hr/>
+/// <h2>MARK: Previous/Next/Right</h2>
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id _Nullable)target previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction doneAction:(SEL _Nonnull)doneAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonImage:(UIImage * _Nonnull)rightButtonImage previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonTitle:(NSString * _Nonnull)rightButtonTitle previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction shouldShowPlaceholder:(BOOL)shouldShowPlaceholder;
+- (void)addPreviousNextDoneOnKeyboardWithTarget:(id _Nullable)target previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction doneAction:(SEL _Nonnull)doneAction titleText:(NSString * _Nullable)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonImage:(UIImage * _Nonnull)rightButtonImage previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+- (void)addPreviousNextRightOnKeyboardWithTarget:(id _Nullable)target rightButtonTitle:(NSString * _Nonnull)rightButtonTitle previousAction:(SEL _Nonnull)previousAction nextAction:(SEL _Nonnull)nextAction rightButtonAction:(SEL _Nonnull)rightButtonAction titleText:(NSString * _Nullable)titleText;
+@end
+
+
+@interface UIViewController (SWIFT_EXTENSION(UISwift))
+- (UIViewController * _Nullable)parentIQContainerViewController SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class NSLayoutConstraint;
+
+@interface UIViewController (SWIFT_EXTENSION(UISwift))
+/// To set customized distance from keyboard for textField/textView. Can’t be less than zero
+/// @deprecated    Due to change in core-logic of handling distance between textField and keyboard distance, this layout contraint tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint * _Nullable IQLayoutGuideConstraint SWIFT_DEPRECATED_MSG("Due to change in core-logic of handling distance between textField and keyboard distance, this layout contraint tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview.");
+@end
 
 
 /// Class that contains information about the charts current viewport settings, including offsets, scale & translation levels, …

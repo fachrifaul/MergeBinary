@@ -24,21 +24,25 @@ def pod_merge
   #  pod 'UIObjc', path: 'MergedPods/UIObjc'
   
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
-  #    pod 'UISwift', '1.0.0', :binary => true
-#  pod 'NetworkingSwift', :binary => true
-#  pod 'UtilSwift', :binary => true
-#  pod 'UtilObjc', :binary => true // still cannon build
-#  pod 'UIObjc', :binary => true
+  #  pod 'UISwift','~> 1.0.0', :binary => true
+  #  pod 'NetworkingSwift', :binary => true
+  #  pod 'UtilSwift','~> 1.0.0', :binary => true
+  #  pod 'UtilObjc', :binary => true // still cannot build
+  #  pod 'UIObjc','~> 1.0.0', :binary => true
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
-  #  pod 'UISwift-Binary', '1.0.0'
+  pod 'UISwift-Binary','~> 1.0.0'
+  pod 'NetworkingSwift-Binary', '~> 1.0.0',
+  pod 'UtilSwift-Binary','~> 1.0.0',
+  #  pod 'UtilObjc-Binary' // still cannot build
+  pod 'UIObjc-Binary'
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - local podspec
-  pod 'UISwift-Binary', path: 'MergedPodsBinary/UISwift'
-  pod 'NetworkingSwift-Binary', path: 'MergedPodsBinary/NetworkingSwift'
-  pod 'UtilSwift-Binary', path: 'MergedPodsBinary/UtilSwift'
-#  pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannon build
-  pod 'UIObjc-Binary', path: 'MergedPodsBinary/UIObjc'
+  #  pod 'UISwift-Binary', path: 'MergedPodsBinary/UISwift'
+  #  pod 'NetworkingSwift-Binary', path: 'MergedPodsBinary/NetworkingSwift'
+  #  pod 'UtilSwift-Binary', path: 'MergedPodsBinary/UtilSwift'
+  #  pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannot build
+  #  pod 'UIObjc-Binary', path: 'MergedPodsBinary/UIObjc'
 end
 
 def core_pods
