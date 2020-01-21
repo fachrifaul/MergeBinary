@@ -42,7 +42,9 @@ PODS:
     - Texture/Core
   - Texture/Video (2.8.1):
     - Texture/Core
+  - UIObjc (1.0.0)
   - UISwift-Binary (1.0.0)
+  - UtilSwift (1.0.0)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
@@ -54,7 +56,9 @@ DEPENDENCIES:
   - Starscream (= 3.1.1)
   - SwiftPhoenixClient (= 1.2.0)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
+  - UIObjc
   - UISwift-Binary (from `MergedPodsBinary/UISwift`)
+  - UtilSwift
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -68,6 +72,8 @@ SPEC REPOS:
     - SwiftPhoenixClient
   https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
     - NetworkingSwift
+    - UIObjc
+    - UtilSwift
 
 EXTERNAL SOURCES:
   Texture:
@@ -91,8 +97,10 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftPhoenixClient: ba22ba809b345522afe478817d7cb51ee3d49365
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
+  UIObjc: 5fb05fb8713ca4f232ac68e422c978f4e8ee5ef0
   UISwift-Binary: cb3b4b181dfbe0ee7e5ab7cc4024b90771766820
+  UtilSwift: 04a74e03c623a37e1c62f85d7639565cfac4461d
 
-PODFILE CHECKSUM: 296c7a1c78d57a9fc69ccda9023e2686fdcc1d56
+PODFILE CHECKSUM: 75a7b35017251e9e41595b9672638cdecaa9c990
 
 COCOAPODS: 1.8.4
