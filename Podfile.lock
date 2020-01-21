@@ -42,25 +42,19 @@ PODS:
     - Texture/Core
   - Texture/Video (2.8.1):
     - Texture/Core
-  - UIObjc (1.0.0)
   - UISwift-Binary (1.0.0)
-  - UtilObjc (1.0.0)
-  - UtilSwift (1.0.0)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
   - lottie-ios (= 3.1.5)
-  - NetworkingSwift (from `MergedPods/NetworkingSwift`)
+  - NetworkingSwift (from `./`)
   - PINCache (= 3.0.1-beta.7)
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
   - Starscream (= 3.1.1)
   - SwiftPhoenixClient (= 1.2.0)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
-  - UIObjc (from `MergedPods/UIObjc`)
   - UISwift-Binary (from `MergedPodsBinary/UISwift`)
-  - UtilObjc (from `MergedPods/UtilObjc`)
-  - UtilSwift (from `MergedPods/UtilSwift`)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -75,18 +69,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   NetworkingSwift:
-    :path: MergedPods/NetworkingSwift
+    :path: "./"
   Texture:
     :branch: releases/p8.0
     :git: https://github.com/TextureGroup/Texture.git
-  UIObjc:
-    :path: MergedPods/UIObjc
   UISwift-Binary:
     :path: MergedPodsBinary/UISwift
-  UtilObjc:
-    :path: MergedPods/UtilObjc
-  UtilSwift:
-    :path: MergedPods/UtilSwift
 
 CHECKOUT OPTIONS:
   Texture:
@@ -96,18 +84,15 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  NetworkingSwift: 505483af152400eec1570d68a25a2fc079e938e0
+  NetworkingSwift: 3e697107f76663aee1a450f5e8fd14c3f07e40ba
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftPhoenixClient: ba22ba809b345522afe478817d7cb51ee3d49365
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
-  UIObjc: 071a7b51427ddd10dc9bc7f78f63a44ae05075a1
   UISwift-Binary: cb3b4b181dfbe0ee7e5ab7cc4024b90771766820
-  UtilObjc: ae0614337fa907486950fa9f746593fb75020571
-  UtilSwift: aa8cea0546464ed1e2f3e053b11c6df3fbaf6d0b
 
-PODFILE CHECKSUM: 48c91b21b4f0fe59ec2f9fe4777789d94b5770d7
+PODFILE CHECKSUM: 2ff9794dc6b86f86e73cfe99629caeccd107eebe
 
 COCOAPODS: 1.8.4

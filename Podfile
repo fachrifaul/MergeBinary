@@ -22,8 +22,9 @@ def pod_merge_ui_swift
   #  pod 'UtilSwift', path: 'MergedPods/UtilSwift'
   #  pod 'UtilObjc', path: 'MergedPods/UtilObjc'
   #  pod 'UIObjc', path: 'MergedPods/UIObjc'
+  
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
-  #  pod 'UISwift', '1.0.0', :binary => true
+  #    pod 'UISwift', '1.0.0', :binary => true
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
   #  pod 'UISwift-Binary', '1.0.0'
