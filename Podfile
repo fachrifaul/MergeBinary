@@ -15,7 +15,7 @@ $texture_version = { :git => 'https://github.com/TextureGroup/Texture.git', :bra
 
 workspace 'MergeBinary'
 
-def pod_merge_ui_swift
+def pod_merge
   # Using pod-merge - fast pod install, slow clean build
   #  pod 'UISwift', path: 'MergedPods/UISwift'
   #  pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
@@ -25,25 +25,29 @@ def pod_merge_ui_swift
   
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
   #    pod 'UISwift', '1.0.0', :binary => true
-  pod 'NetworkingSwift', :binary => true
-  pod 'UtilSwift', :binary => true
-#  pod 'UtilObjc', :binary => true
-  pod 'UIObjc', :binary => true
+#  pod 'NetworkingSwift', :binary => true
+#  pod 'UtilSwift', :binary => true
+#  pod 'UtilObjc', :binary => true // still cannon build
+#  pod 'UIObjc', :binary => true
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
   #  pod 'UISwift-Binary', '1.0.0'
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - local podspec
   pod 'UISwift-Binary', path: 'MergedPodsBinary/UISwift'
+  pod 'NetworkingSwift-Binary', path: 'MergedPodsBinary/NetworkingSwift'
+  pod 'UtilSwift-Binary', path: 'MergedPodsBinary/UtilSwift'
+#  pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannon build
+  pod 'UIObjc-Binary', path: 'MergedPodsBinary/UIObjc'
 end
 
 def core_pods
-  pod_merge_ui_swift
+  pod_merge
   pod 'lottie-ios', '3.1.5', :binary => true
 end
 
 def feature_pods
-  pod_merge_ui_swift
+  pod_merge
   pod 'lottie-ios', '3.1.5', :binary => true
   pod 'PINCache', $pincache_version, :binary => true
   pod 'PINOperation', '1.1.2', :binary => true
@@ -52,7 +56,7 @@ def feature_pods
 end
 
 def all_pods
-  pod_merge_ui_swift
+  pod_merge
   core_pods
   feature_pods
   pod 'KeychainSwift', '18.0.0'
