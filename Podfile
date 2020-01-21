@@ -7,13 +7,20 @@ keep_source_code_for_prebuilt_frameworks!
 enable_bitcode_for_prebuilt_frameworks!
 use_frameworks!
 
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/fachrifaul/MyAwesomeKit-Spec.git'
+
 $pincache_version = '3.0.1-beta.7'
 $texture_version = { :git => 'https://github.com/TextureGroup/Texture.git', :branch => 'releases/p8.0' }
 
 workspace 'MergeBinary'
 
 def pod_merge_ui_swift
-  pod 'UISwift', path: 'MergedPods/UISwift', :binary => true
+# Using pod-merge
+#  pod 'UISwift', path: 'MergedPods/UISwift'
+
+# Pod-merge push and make binary
+  pod 'UISwift', '1.0.0', :binary => true
 end
 
 def core_pods
