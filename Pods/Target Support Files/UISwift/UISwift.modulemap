@@ -1,6 +1,0 @@
-framework module UISwift {
-  umbrella header "UISwift-umbrella.h"
-
-  export *
-  module * { export * }
-}
