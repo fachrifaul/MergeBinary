@@ -7,7 +7,7 @@
           s.homepage         = 'https://github.com/grab/cocoapods-pod-merge'
           s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
           s.author           = { 'GrabTaxi Pte Ltd' => 'dummy@grabtaxi.com' }
-          s.source           = { :git => 'https://github.com/grab/cocoapods-pod-merge'}
+          s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git'}
           s.ios.deployment_target = '8.0'
           s.source_files = 'MergedPods/UISwift/Sources/**/*.{h,m,mm,swift}'
         
