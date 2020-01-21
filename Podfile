@@ -18,7 +18,10 @@ workspace 'MergeBinary'
 def pod_merge_ui_swift
   # Using pod-merge - fast pod install, slow clean build
   #  pod 'UISwift', path: 'MergedPods/UISwift'
-  
+  pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
+  pod 'UtilSwift', path: 'MergedPods/UtilSwift'
+  pod 'UtilObjc', path: 'MergedPods/UtilObjc'
+  pod 'UIObjc', path: 'MergedPods/UIObjc'
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
   #  pod 'UISwift', '1.0.0', :binary => true
   
@@ -47,20 +50,9 @@ def all_pods
   pod_merge_ui_swift
   core_pods
   feature_pods
-  doraemonkit_pods
   pod 'KeychainSwift', '18.0.0'
   pod 'Starscream', '3.1.1', :binary => true
   pod 'SwiftPhoenixClient', '1.2.0', :binary => true
-end
-
-def doraemonkit_pods
-  $doraemonkit_version = { :git => 'https://github.com/didi/DoraemonKit.git', :branch => 'master' }
-  $fbRetainCycleDetector_version = { :git => 'https://github.com/facebook/FBRetainCycleDetector.git', :branch => 'master' }
-
-  pod 'DoraemonKit/Core', $doraemonkit_version, :configurations => ['Debug']
-  pod 'DoraemonKit/WithLoad', $doraemonkit_version, :configurations => ['Debug']
-  pod 'DoraemonKit/WithMLeaksFinder', $doraemonkit_version, :configurations => ['Debug']
-  pod 'FBRetainCycleDetector', $fbRetainCycleDetector_version, :configurations => ['Debug']
 end
 
 target 'MergeBinary' do

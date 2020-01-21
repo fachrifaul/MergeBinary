@@ -1,0 +1,51 @@
+framework module UtilObjc {
+
+	explicit module PINCache {
+		header "PINDiskCache.h"
+		header "PINCacheObjectSubscripting.h"
+		header "PINCaching.h"
+		header "PINCacheMacros.h"
+		header "PINCache.h"
+		header "PINMemoryCache.h"
+	}
+
+	explicit module PINOperation {
+		header "PINOperationQueue.h"
+		header "PINOperation.h"
+		header "PINOperationGroup.h"
+		header "PINOperationMacros.h"
+		header "PINOperationTypes.h"
+	}
+
+	explicit module TrustKit {
+		header "TSKTrustKitConfig.h"
+		header "vendor_identifier.h"
+		header "TSKReportsRateLimiter.h"
+		header "reporting_utils.h"
+		header "TSKPinFailureReport.h"
+		header "TSKBackgroundReporter.h"
+		header "TSKTrustDecision.h"
+		header "TSKPinningValidatorResult.h"
+		header "TSKLog.h"
+		header "TrustKit.h"
+		header "domain_registry.h"
+		header "registry_tables.h"
+		header "tsk_assert.h"
+		header "string_util.h"
+		header "trie_search.h"
+		header "registry_types.h"
+		header "trie_node.h"
+		header "RSSwizzle.h"
+		header "TSKPinningValidator.h"
+		header "TSKNSURLSessionDelegateProxy.h"
+		header "TSKNSURLConnectionDelegateProxy.h"
+		header "TSKPinningValidator_Private.h"
+		header "TSKPublicKeyAlgorithm.h"
+		header "TSKSPKIHashCache.h"
+		header "ssl_pin_verifier.h"
+		header "configuration_utils.h"
+		header "TSKPinningValidatorCallback.h"
+		header "parse_configuration.h"
+	}
+
+}

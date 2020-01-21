@@ -1,5 +1,50 @@
 group 'UISwift'
   swift_version! '5.0'
+
   pod 'Charts', '3.4.0'
   pod 'DeepDiff', '2.3.1'
+  pod 'IQKeyboardManagerSwift', '6.3.0'
+  pod 'NVActivityIndicatorView', { git: 'https://github.com/bukalapak/NVActivityIndicatorView.git', tag: 'bukalapak_1.2' }
+  pod 'lottie-ios', '2.5.2'
+end
+
+group 'NetworkingSwift'
+  swift_version! '5.0'
+
+  pod 'Alamofire', '4.9.1'
+  
+  has_dependencies!
+  pod 'Starscream', '3.1.1'
+  pod 'SwiftPhoenixClient', '1.2.0'
+end
+
+group 'UtilSwift'
+  swift_version! '5.0'
+  
+  pod 'CocoaLumberjack', '3.6.0'
+  pod 'KeychainSwift', '18.0.0'
+  pod 'RNCryptor', '5.1.0'
+  pod 'SwiftyJSON', '5.0.0'
+  pod 'SwiftyRSA', { git: 'https://github.com/bl-core-vitals/SwiftyRSA.git', branch: 'swift_5' }
+  pod 'ObjectMapper', '3.5.0'
+  pod 'DeviceGuru', '6.0.3'
+  pod 'Parchment', { git: 'https://github.com/bl-core-vitals/Parchment.git', branch: '1.7.0.2' }
+  pod 'PromisesSwift', { git: 'https://github.com/bl-core-vitals/promises', branch: 'pod_mergeable' }
+  pod 'PromisesObjC', { git: 'https://github.com/bl-core-vitals/promises', branch: 'pod_mergeable' }, modular_headers: true
+end
+
+group 'UtilObjc'
+  has_dependencies!
+  pod 'PINCache', '3.0.1-beta.7'
+  pod 'PINOperation', '1.1.2'
+  pod 'TrustKit', { git: "https://github.com/bl-core-vitals/TrustKit.git", branch: "pod_mergeable" }
+end
+
+group 'UIObjc'
+  has_dependencies!
+  pod 'CTAssetsPickerController', '3.3.1'
+  pod 'PureLayout', '3.0.0'
+
+  pod 'SDWebImage', '4.3.3'
+  pod 'iCarousel', '1.8.3'
 end
