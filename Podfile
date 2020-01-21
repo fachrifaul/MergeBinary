@@ -16,13 +16,13 @@ $texture_version = { :git => 'https://github.com/TextureGroup/Texture.git', :bra
 workspace 'MergeBinary'
 
 def pod_merge_ui_swift
-# Using pod-merge
+# Using pod-merge - fast pod install, slow clean build
 #  pod 'UISwift', path: 'MergedPods/UISwift'
 
-# Code UISwift with Pod-merge and make binary
+# Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
 #  pod 'UISwift', '1.0.0', :binary => true
 
-# Binary UISwift
+# Binary UISwift - slow first pod install (download pre-compile), fast clean build
   pod 'UISwift-Binary', '1.0.0'
 end
 
