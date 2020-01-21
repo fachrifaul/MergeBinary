@@ -1,7 +1,7 @@
 PODS:
   - KeychainSwift (18.0.0)
   - lottie-ios (3.1.5)
-  - NetworkingSwift-Binary (1.0.0)
+  - NetworkingSwift-Binary (1.0.2)
   - PINCache (3.0.1-beta.7):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.7)
     - PINCache/Core (= 3.0.1-beta.7)
@@ -92,7 +92,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  NetworkingSwift-Binary: 74f19932e56ae6a62e7157e671059dc814a704ba
+  NetworkingSwift-Binary: 70ede93fbe05278c472b8cb829979145f8a9fff8
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
