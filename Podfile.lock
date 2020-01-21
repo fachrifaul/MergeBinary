@@ -49,16 +49,16 @@ PODS:
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
   - lottie-ios (= 3.1.5)
-  - NetworkingSwift-Binary (from `MergedPodsBinary/NetworkingSwift`)
+  - NetworkingSwift-Binary (from `./`)
   - PINCache (= 3.0.1-beta.7)
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
   - Starscream (= 3.1.1)
   - SwiftPhoenixClient (= 1.2.0)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
-  - UIObjc-Binary (from `MergedPodsBinary/UIObjc`)
-  - UISwift-Binary (from `MergedPodsBinary/UISwift`)
-  - UtilSwift-Binary (from `MergedPodsBinary/UtilSwift`)
+  - UIObjc-Binary (from `./`)
+  - UISwift-Binary (from `./`)
+  - UtilSwift-Binary (from `./`)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -73,16 +73,16 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   NetworkingSwift-Binary:
-    :path: MergedPodsBinary/NetworkingSwift
+    :path: "./"
   Texture:
     :branch: releases/p8.0
     :git: https://github.com/TextureGroup/Texture.git
   UIObjc-Binary:
-    :path: MergedPodsBinary/UIObjc
+    :path: "./"
   UISwift-Binary:
-    :path: MergedPodsBinary/UISwift
+    :path: "./"
   UtilSwift-Binary:
-    :path: MergedPodsBinary/UtilSwift
+    :path: "./"
 
 CHECKOUT OPTIONS:
   Texture:
@@ -92,17 +92,17 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
-  NetworkingSwift-Binary: d2c6dcbafc3ea32e5f478b9d6588ab688cf269dd
+  NetworkingSwift-Binary: 74f19932e56ae6a62e7157e671059dc814a704ba
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftPhoenixClient: ba22ba809b345522afe478817d7cb51ee3d49365
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
-  UIObjc-Binary: a6c75cfb12c55aabcdd3d9b72610c122644c5262
-  UISwift-Binary: d063637987840963c00d1110338859ff7d884fb7
-  UtilSwift-Binary: 4b070435e5e27574807c62a7d6800ae01b5842e1
+  UIObjc-Binary: 1c0d602eb0808599b0d8027fba3ff3c68c5d39d8
+  UISwift-Binary: 1127d03f2049e0b593d615b5305685e43c2e9575
+  UtilSwift-Binary: efed66a32f1783bc3b6c65cdcbb8d267347fac6d
 
-PODFILE CHECKSUM: 9b35c095245a70fdde34b0708763ca156b33ab45
+PODFILE CHECKSUM: 5f7711568e50221a730bee5825281b96a8c288d8
 
 COCOAPODS: 1.8.4

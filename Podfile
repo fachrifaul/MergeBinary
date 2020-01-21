@@ -38,11 +38,11 @@ def pod_merge
   #  pod 'UIObjc-Binary', '~> 1.0.0'
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - local podspec
-  pod 'UISwift-Binary', path: 'MergedPodsBinary/UISwift'
-  pod 'NetworkingSwift-Binary', path: 'MergedPodsBinary/NetworkingSwift'
-  pod 'UtilSwift-Binary', path: 'MergedPodsBinary/UtilSwift'
+  pod 'UISwift-Binary', path: './'
+  pod 'NetworkingSwift-Binary', path: './'
+  pod 'UtilSwift-Binary', path: './'
   #    pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannot build
-  pod 'UIObjc-Binary', path: 'MergedPodsBinary/UIObjc'
+  pod 'UIObjc-Binary', path: './'
 end
 
 def core_pods
