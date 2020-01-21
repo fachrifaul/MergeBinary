@@ -1,0 +1,13 @@
+${PODS_ROOT}/Target Support Files/Pods-MergeBinary/Pods-MergeBinary-frameworks.sh
+${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework
+${PODS_ROOT}/PINCache/PINCache.framework
+${PODS_ROOT}/PINCache/PINCache.framework.dSYM
+${PODS_ROOT}/PINOperation/PINOperation.framework
+${PODS_ROOT}/PINOperation/PINOperation.framework.dSYM
+${PODS_ROOT}/PINRemoteImage/PINRemoteImage.framework
+${PODS_ROOT}/PINRemoteImage/PINRemoteImage.framework.dSYM
+${PODS_ROOT}/Texture/AsyncDisplayKit.framework
+${PODS_ROOT}/Texture/AsyncDisplayKit.framework.dSYM
+${BUILT_PRODUCTS_DIR}/UISwift/UISwift.framework
+${PODS_ROOT}/lottie-ios/Lottie.framework
+${PODS_ROOT}/lottie-ios/Lottie.framework.dSYM

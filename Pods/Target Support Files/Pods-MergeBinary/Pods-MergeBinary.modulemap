@@ -1,0 +1,6 @@
+framework module Pods_MergeBinary {
+  umbrella header "Pods-MergeBinary-umbrella.h"
+
+  export *
+  module * { export * }
+}

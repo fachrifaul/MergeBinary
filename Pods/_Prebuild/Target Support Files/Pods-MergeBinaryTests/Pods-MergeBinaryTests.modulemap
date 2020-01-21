@@ -1,0 +1,6 @@
+framework module Pods_MergeBinaryTests {
+  umbrella header "Pods-MergeBinaryTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

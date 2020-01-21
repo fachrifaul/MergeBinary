@@ -1,0 +1,5 @@
+group 'UISwift'
+  swift_version! '5.0'
+  pod 'Charts', '3.4.0'
+  pod 'DeepDiff', '2.3.1'
+end
