@@ -7,5 +7,5 @@ install: ## make install
 	bundle exec pod install
 
 update: ## make update
-	bundle update
+	bundle install
 	bundle exec pod install --repo-update

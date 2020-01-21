@@ -38,7 +38,7 @@ PODS:
     - Texture/Core
   - Texture/Video (2.8.1):
     - Texture/Core
-  - UISwift (1.0.0)
+  - UISwift-Binary (1.0.0)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
@@ -47,7 +47,7 @@ DEPENDENCIES:
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
-  - UISwift (= 1.0.0)
+  - UISwift-Binary (= 1.0.0)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -57,7 +57,7 @@ SPEC REPOS:
     - PINOperation
     - PINRemoteImage
   https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
-    - UISwift
+    - UISwift-Binary
 
 EXTERNAL SOURCES:
   Texture:
@@ -76,8 +76,8 @@ SPEC CHECKSUMS:
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
-  UISwift: 8f99021752698fb407dd33f8a0ace173df1a7aab
+  UISwift-Binary: 26bfe8622e03488dd6084581f7dfc7857e69ae7f
 
-PODFILE CHECKSUM: a7caad04069997a7cc55615c71887d7c6eec6cf9
+PODFILE CHECKSUM: d27e1eedb932ffb0b814e63207ba23e8329394e2
 
 COCOAPODS: 1.9.0.beta.2

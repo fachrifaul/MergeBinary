@@ -19,8 +19,11 @@ def pod_merge_ui_swift
 # Using pod-merge
 #  pod 'UISwift', path: 'MergedPods/UISwift'
 
-# Pod-merge push and make binary
-  pod 'UISwift', '1.0.0', :binary => true
+# Code UISwift with Pod-merge and make binary
+#  pod 'UISwift', '1.0.0', :binary => true
+
+# Binary UISwift
+  pod 'UISwift-Binary', '1.0.0'
 end
 
 def core_pods
