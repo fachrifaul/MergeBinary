@@ -10,7 +10,6 @@ import Foundation
 import UISwift
 import AsyncDisplayKit
 import PINCache
-import Lottie
 
 public class Feature {
     public static func feature() {

@@ -12,17 +12,17 @@ import Feature
 import UISwift
 import AsyncDisplayKit
 import PINCache
-import Lottie
-import Starscream
-import SwiftPhoenixClient
+import NetworkingSwift
 
 class ViewController: UIViewController {
     
-    private var animationView: AnimationView? // Lottie
+    private var animationView: LOTAnimationView? // Lottie
     private var pincache: PINCache? // PINCache
     private var text: ASTextNode? // Texture / AsyncDisplayKit
     private var socket: WebSocket? //Starscream
     private var lobbyChannel: Channel? //SwiftPhoenixClient
+    private var reachability: NetworkReachabilityManager?
+    private var loadingView: NVActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()

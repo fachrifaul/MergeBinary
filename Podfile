@@ -24,11 +24,11 @@ def pod_merge
   #  pod 'UIObjc', path: 'MergedPods/UIObjc'
   
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
-  #  pod 'UISwift','~> 1.0.0', :binary => true
-  #  pod 'NetworkingSwift', :binary => true
-  #  pod 'UtilSwift','~> 1.0.0', :binary => true
+  pod 'UISwift','~> 1.0.0', :binary => true
+  pod 'NetworkingSwift','~> 1.0.0', :binary => true
+  pod 'UtilSwift','~> 1.0.0', :binary => true
   #  pod 'UtilObjc', :binary => true // still cannot build
-  #  pod 'UIObjc','~> 1.0.0', :binary => true
+  pod 'UIObjc','~> 1.0.0', :binary => true
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
   #  pod 'UISwift-Binary', '~> 1.0.0'
@@ -38,21 +38,19 @@ def pod_merge
   #  pod 'UIObjc-Binary', '~> 1.0.0'
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - local podspec
-  pod 'UISwift-Binary', path: './'
-  pod 'NetworkingSwift-Binary', path: './'
-  pod 'UtilSwift-Binary', path: './'
-  #    pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannot build
-  pod 'UIObjc-Binary', path: './'
+  #  pod 'UISwift-Binary', path: './'
+  #  pod 'NetworkingSwift-Binary', path: './'
+  #  pod 'UtilSwift-Binary', path: './'
+  #  pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannot build
+  #  pod 'UIObjc-Binary', path: './'
 end
 
 def core_pods
   pod_merge
-  pod 'lottie-ios', '3.1.5', :binary => true
 end
 
 def feature_pods
   pod_merge
-  pod 'lottie-ios', '3.1.5', :binary => true
   pod 'PINCache', $pincache_version, :binary => true
   pod 'PINOperation', '1.1.2', :binary => true
   pod 'PINRemoteImage', '3.0.0-beta.14', :binary => true
@@ -64,8 +62,6 @@ def all_pods
   core_pods
   feature_pods
   pod 'KeychainSwift', '18.0.0'
-  pod 'Starscream', '3.1.1', :binary => true
-  pod 'SwiftPhoenixClient', '1.2.0', :binary => true
 end
 
 target 'MergeBinary' do

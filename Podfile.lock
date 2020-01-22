@@ -1,6 +1,5 @@
 PODS:
   - KeychainSwift (18.0.0)
-  - lottie-ios (3.1.5)
   - NetworkingSwift-Binary (1.0.2)
   - PINCache (3.0.1-beta.7):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.7)
@@ -19,9 +18,6 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.14):
     - PINCache (= 3.0.1-beta.7)
     - PINRemoteImage/Core
-  - Starscream (3.1.1)
-  - SwiftPhoenixClient (1.2.0):
-    - Starscream (~> 3.1.0)
   - Texture (2.8.1):
     - Texture/AssetsLibrary (= 2.8.1)
     - Texture/Core (= 2.8.1)
@@ -43,33 +39,28 @@ PODS:
   - Texture/Video (2.8.1):
     - Texture/Core
   - UIObjc-Binary (1.0.0)
-  - UISwift-Binary (1.0.0)
+  - UISwift (1.0.1)
   - UtilSwift-Binary (1.0.0)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
-  - lottie-ios (= 3.1.5)
   - NetworkingSwift-Binary (from `./`)
   - PINCache (= 3.0.1-beta.7)
   - PINOperation (= 1.1.2)
   - PINRemoteImage (= 3.0.0-beta.14)
-  - Starscream (= 3.1.1)
-  - SwiftPhoenixClient (= 1.2.0)
   - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
   - UIObjc-Binary (from `./`)
-  - UISwift-Binary (from `./`)
+  - UISwift (~> 1.0.0)
   - UtilSwift-Binary (from `./`)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
     - KeychainSwift
-    - lottie-ios
     - PINCache
     - PINOperation
     - PINRemoteImage
-  https://github.com/CocoaPods/Specs.git:
-    - Starscream
-    - SwiftPhoenixClient
+  https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
+    - UISwift
 
 EXTERNAL SOURCES:
   NetworkingSwift-Binary:
@@ -78,8 +69,6 @@ EXTERNAL SOURCES:
     :branch: releases/p8.0
     :git: https://github.com/TextureGroup/Texture.git
   UIObjc-Binary:
-    :path: "./"
-  UISwift-Binary:
     :path: "./"
   UtilSwift-Binary:
     :path: "./"
@@ -91,18 +80,15 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
-  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
   NetworkingSwift-Binary: 70ede93fbe05278c472b8cb829979145f8a9fff8
   PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
-  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
-  SwiftPhoenixClient: ba22ba809b345522afe478817d7cb51ee3d49365
   Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
   UIObjc-Binary: 1c0d602eb0808599b0d8027fba3ff3c68c5d39d8
-  UISwift-Binary: 1127d03f2049e0b593d615b5305685e43c2e9575
+  UISwift: d7cf1a045351b95aa80f5c4b0b257df0c0fb6f22
   UtilSwift-Binary: efed66a32f1783bc3b6c65cdcbb8d267347fac6d
 
-PODFILE CHECKSUM: 5f7711568e50221a730bee5825281b96a8c288d8
+PODFILE CHECKSUM: a0f25ec4ac55782564a4d95c6425feddd7fe02f0
 
 COCOAPODS: 1.8.4

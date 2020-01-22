@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Lottie
 import UISwift
 
 public class Dummy {
