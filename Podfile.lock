@@ -1,94 +1,40 @@
 PODS:
   - KeychainSwift (18.0.0)
-  - NetworkingSwift-Binary (1.0.2)
-  - PINCache (3.0.1-beta.7):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.7)
-    - PINCache/Core (= 3.0.1-beta.7)
-  - PINCache/Arc-exception-safe (3.0.1-beta.7):
-    - PINCache/Core
-  - PINCache/Core (3.0.1-beta.7):
-    - PINOperation (~> 1.1.1)
-  - PINOperation (1.1.2)
-  - PINRemoteImage (3.0.0-beta.14):
-    - PINRemoteImage/PINCache (= 3.0.0-beta.14)
-  - PINRemoteImage/Core (3.0.0-beta.14):
-    - PINOperation
-  - PINRemoteImage/iOS (3.0.0-beta.14):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.14):
-    - PINCache (= 3.0.1-beta.7)
-    - PINRemoteImage/Core
-  - Texture (2.8.1):
-    - Texture/AssetsLibrary (= 2.8.1)
-    - Texture/Core (= 2.8.1)
-    - Texture/MapKit (= 2.8.1)
-    - Texture/Photos (= 2.8.1)
-    - Texture/PINRemoteImage (= 2.8.1)
-    - Texture/Video (= 2.8.1)
-  - Texture/AssetsLibrary (2.8.1):
-    - Texture/Core
-  - Texture/Core (2.8.1)
-  - Texture/MapKit (2.8.1):
-    - Texture/Core
-  - Texture/Photos (2.8.1):
-    - Texture/Core
-  - Texture/PINRemoteImage (2.8.1):
-    - PINRemoteImage/iOS (= 3.0.0-beta.14)
-    - PINRemoteImage/PINCache
-    - Texture/Core
-  - Texture/Video (2.8.1):
-    - Texture/Core
-  - UIObjc-Binary (1.0.0)
+  - NetworkingSwift (1.0.3)
+  - UIObjc (1.0.3)
   - UISwift (1.0.1)
-  - UtilSwift-Binary (1.0.0)
+  - UtilObjc (1.0.0)
+  - UtilSwift (1.0.3)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
-  - NetworkingSwift-Binary (from `./`)
-  - PINCache (= 3.0.1-beta.7)
-  - PINOperation (= 1.1.2)
-  - PINRemoteImage (= 3.0.0-beta.14)
-  - Texture (from `https://github.com/TextureGroup/Texture.git`, branch `releases/p8.0`)
-  - UIObjc-Binary (from `./`)
+  - NetworkingSwift (~> 1.0.0)
+  - UIObjc (~> 1.0.0)
   - UISwift (~> 1.0.0)
-  - UtilSwift-Binary (from `./`)
+  - UtilObjc (from `MergedPods/UtilObjc`)
+  - UtilSwift (~> 1.0.0)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
     - KeychainSwift
-    - PINCache
-    - PINOperation
-    - PINRemoteImage
   https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
+    - NetworkingSwift
+    - UIObjc
     - UISwift
+    - UtilSwift
 
 EXTERNAL SOURCES:
-  NetworkingSwift-Binary:
-    :path: "./"
-  Texture:
-    :branch: releases/p8.0
-    :git: https://github.com/TextureGroup/Texture.git
-  UIObjc-Binary:
-    :path: "./"
-  UtilSwift-Binary:
-    :path: "./"
-
-CHECKOUT OPTIONS:
-  Texture:
-    :commit: d688ce3d2091fadfa85f89c9f915e442eb1f0de0
-    :git: https://github.com/TextureGroup/Texture.git
+  UtilObjc:
+    :path: MergedPods/UtilObjc
 
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
-  NetworkingSwift-Binary: 70ede93fbe05278c472b8cb829979145f8a9fff8
-  PINCache: 7cb9ae068c8f655717f7c644ef1dff9fd573e979
-  PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
-  PINRemoteImage: 81bbff853acc71c6de9e106e9e489a791b8bbb08
-  Texture: 6811322192a44ed35bcd53772aa8df8965d9796b
-  UIObjc-Binary: 1c0d602eb0808599b0d8027fba3ff3c68c5d39d8
+  NetworkingSwift: 3fc360fdac7675f0ccebdb5c42d9ac55fc570bf6
+  UIObjc: 17482df8d888b9e92460d55d175e597f18451151
   UISwift: d7cf1a045351b95aa80f5c4b0b257df0c0fb6f22
-  UtilSwift-Binary: efed66a32f1783bc3b6c65cdcbb8d267347fac6d
+  UtilObjc: acda2f14aa28dc9e7800288b52692a6a8f26d39d
+  UtilSwift: c3c6667140600999cecb2e9fb0a420115626e214
 
-PODFILE CHECKSUM: a0f25ec4ac55782564a4d95c6425feddd7fe02f0
+PODFILE CHECKSUM: a468149c6b95519adfffe7205876b8845ca538cf
 
 COCOAPODS: 1.8.4

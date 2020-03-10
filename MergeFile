@@ -12,7 +12,7 @@ group 'NetworkingSwift'
   swift_version! '5.0'
 
   pod 'Alamofire', '4.9.1'
-  
+
   has_dependencies!
   pod 'Starscream', '3.1.1'
   pod 'SwiftPhoenixClient', '1.2.0'
@@ -20,31 +20,28 @@ end
 
 group 'UtilSwift'
   swift_version! '5.0'
-  
-  pod 'CocoaLumberjack', '3.6.0'
+
+  pod 'CocoaLumberjack', { git:  'https://github.com/bl-core-vitals/CocoaLumberjack.git', branch: '3.6.0' }
   pod 'KeychainSwift', '18.0.0'
   pod 'RNCryptor', '5.1.0'
   pod 'SwiftyJSON', '5.0.0'
   pod 'SwiftyRSA', { git: 'https://github.com/bl-core-vitals/SwiftyRSA.git', branch: 'swift_5' }
-  pod 'ObjectMapper', '3.5.0'
+  pod 'ObjectMapper', '3.5.1'
   pod 'DeviceGuru', '6.0.3'
   pod 'Parchment', { git: 'https://github.com/bl-core-vitals/Parchment.git', branch: '1.7.0.2' }
+  pod 'Swinject', '2.7.1'
   pod 'PromisesSwift', { git: 'https://github.com/bl-core-vitals/promises', branch: 'pod_mergeable' }
   pod 'PromisesObjC', { git: 'https://github.com/bl-core-vitals/promises', branch: 'pod_mergeable' }, modular_headers: true
 end
 
 group 'UtilObjc'
   has_dependencies!
-  pod 'PINCache', '3.0.1-beta.7'
-  pod 'PINOperation', '1.1.2'
+  pod 'PINCache', { git: 'https://github.com/bl-core-vitals/PINCache.git', branch: '3.0.1-beta.7' }
+  pod 'PINOperation', { git: 'https://github.com/bl-core-vitals/PINOperation.git', branch: '1.1.2' }
   pod 'TrustKit', { git: "https://github.com/bl-core-vitals/TrustKit.git", branch: "pod_mergeable" }
 end
 
 group 'UIObjc'
-  has_dependencies!
-  pod 'CTAssetsPickerController', '3.3.1'
-  pod 'PureLayout', '3.0.0'
-
   pod 'SDWebImage', '4.3.3'
   pod 'iCarousel', '1.8.3'
 end

@@ -6,13 +6,14 @@
           s.description      = 'Merged Framework containing the pods: ["PINCache", "PINOperation", "TrustKit"]'
           s.homepage         = 'https://github.com/grab/cocoapods-pod-merge'
           s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
-          s.author           = { 'Fachri Febrian' => 'fachripaul@gmail.com' }
+          s.author           = { 'GrabTaxi Pte Ltd' => 'dummy@grabtaxi.com' }
           s.source           = { :git => 'https://github.com/grab/cocoapods-pod-merge', :tag => '1.0.0' }
-          s.ios.deployment_target = '8.0'
-          s.source_files = 'Sources/**/*.{h,m,mm,swift}'
+          s.ios.deployment_target =  '12.0'
+          s.source_files = 'Sources/**/*.{h,m,mm,swift,c}'
         
 s.module_map = 'Sources/module.modulemap'
 s.frameworks = "Foundation", "Security"
 s.prefix_header_contents = "#ifndef TARGET_OS_WATCH\n  #define TARGET_OS_WATCH 0\n#endif"
 s.private_header_files = "Sources/TrustKit/trie_node.h", "Sources/TrustKit/domain_registry.h"
+s.public_header_files = ["Sources/PINCache/Source/**/*.h", "Sources/PINOperation/Source/**/*.h", "Sources/TrustKit/TrustKit/include/TrustKit.h", "Sources/TrustKit/TrustKit/TSKTrustKitConfig.h", "Sources/TrustKit/TrustKit/TSKPinningValidator.h", "Sources/TrustKit/TrustKit/TSKPinningValidatorCallback.h", "Sources/TrustKit/TrustKit/TSKPinningValidatorResult.h", "Sources/TrustKit/TrustKit/TSKTrustDecision.h"]
 end

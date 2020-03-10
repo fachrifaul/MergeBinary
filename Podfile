@@ -20,14 +20,14 @@ def pod_merge
   #  pod 'UISwift', path: 'MergedPods/UISwift'
   #  pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
   #  pod 'UtilSwift', path: 'MergedPods/UtilSwift'
-  #  pod 'UtilObjc', path: 'MergedPods/UtilObjc'
+    pod 'UtilObjc', path: 'MergedPods/UtilObjc'
   #  pod 'UIObjc', path: 'MergedPods/UIObjc'
   
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
   pod 'UISwift','~> 1.0.0', :binary => true
   pod 'NetworkingSwift','~> 1.0.0', :binary => true
   pod 'UtilSwift','~> 1.0.0', :binary => true
-  #  pod 'UtilObjc', :binary => true // still cannot build
+#  pod 'UtilObjc', :binary => true # still cannot build
   pod 'UIObjc','~> 1.0.0', :binary => true
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
@@ -51,10 +51,10 @@ end
 
 def feature_pods
   pod_merge
-  pod 'PINCache', $pincache_version, :binary => true
-  pod 'PINOperation', '1.1.2', :binary => true
-  pod 'PINRemoteImage', '3.0.0-beta.14', :binary => true
-  pod 'Texture', $texture_version, :binary => true
+#  pod 'PINCache', $pincache_version, :binary => true
+#  pod 'PINOperation', '1.1.2', :binary => true
+#  pod 'PINRemoteImage', '3.0.0-beta.14', :binary => true
+#  pod 'Texture', $texture_version, :binary => true
 end
 
 def all_pods
