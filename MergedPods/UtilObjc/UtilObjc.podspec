@@ -8,7 +8,7 @@
           s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
           s.author           = { 'GrabTaxi Pte Ltd' => 'dummy@grabtaxi.com' }
           s.source           = { :git => 'https://github.com/grab/cocoapods-pod-merge', :tag => '1.0.0' }
-          s.ios.deployment_target =  '12.0'
+          s.ios.deployment_target =  '10.0'
           s.source_files = 'Sources/**/*.{h,m,mm,swift,c}'
         
 s.module_map = 'Sources/module.modulemap'

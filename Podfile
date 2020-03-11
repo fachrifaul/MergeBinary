@@ -1,7 +1,7 @@
 plugin 'cocoapods-pod-merge'
 plugin 'cocoapods-binary'
 
-platform :ios, '12.0'
+platform :ios, '10.0'
 
 keep_source_code_for_prebuilt_frameworks!
 enable_bitcode_for_prebuilt_frameworks!

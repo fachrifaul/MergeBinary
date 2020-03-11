@@ -10,15 +10,15 @@ import UIKit
 import Core
 import Feature
 import UISwift
-import AsyncDisplayKit
-import PINCache
+//import AsyncDisplayKit
+//import PINCache
 import NetworkingSwift
 
 class ViewController: UIViewController {
     
     private var animationView: LOTAnimationView? // Lottie
-    private var pincache: PINCache? // PINCache
-    private var text: ASTextNode? // Texture / AsyncDisplayKit
+//    private var pincache: PINCache? // PINCache
+//    private var text: ASTextNode? // Texture / AsyncDisplayKit
     private var socket: WebSocket? //Starscream
     private var lobbyChannel: Channel? //SwiftPhoenixClient
     private var reachability: NetworkReachabilityManager?
