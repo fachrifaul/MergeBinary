@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "DDFileLogger+Internal.h"
 #import "CLIColor.h"
 #import "DDAbstractDatabaseLogger.h"
 #import "DDASLLogCapture.h"
@@ -29,6 +28,8 @@
 #import "DDTTYLogger.h"
 #import "CocoaLumberjack.h"
 #import "DDLegacyMacros.h"
+#import "NSData+SHA.h"
+#import "SwiftyRSA.h"
 #import "FBLPromise+All.h"
 #import "FBLPromise+Always.h"
 #import "FBLPromise+Any.h"
@@ -49,8 +50,6 @@
 #import "FBLPromise.h"
 #import "FBLPromiseError.h"
 #import "FBLPromises.h"
-#import "NSData+SHA.h"
-#import "SwiftyRSA.h"
 
 FOUNDATION_EXPORT double UtilSwiftVersionNumber;
 FOUNDATION_EXPORT const unsigned char UtilSwiftVersionString[];

@@ -1,0 +1,29 @@
+framework module UtilObjc {
+
+	explicit module PINCache {
+		header "PINDiskCache.h"
+		header "PINCacheObjectSubscripting.h"
+		header "PINCaching.h"
+		header "PINCacheMacros.h"
+		header "PINCache.h"
+		header "PINMemoryCache.h"
+	}
+
+	explicit module PINOperation {
+		header "PINOperationQueue.h"
+		header "PINOperation.h"
+		header "PINOperationGroup.h"
+		header "PINOperationMacros.h"
+		header "PINOperationTypes.h"
+	}
+
+	explicit module TrustKit {
+		header "TrustKit.h"
+		header "TSKTrustKitConfig.h"
+		header "TSKPinningValidator.h"
+		header "TSKPinningValidatorCallback.h"
+		header "TSKPinningValidatorResult.h"
+		header "TSKTrustDecision.h"
+	}
+
+}
