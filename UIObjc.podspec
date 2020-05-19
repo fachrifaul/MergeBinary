@@ -6,11 +6,11 @@
           s.description      = 'Merged Framework containing the pods: ["SDWebImage", "iCarousel"]'
           s.homepage         = 'https://github.com/grab/cocoapods-pod-merge'
           s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
-          s.author           = { 'GrabTaxi Pte Ltd' => 'dummy@grabtaxi.com' }
-          s.source           = { :git => 'https://github.com/grab/cocoapods-pod-merge', :tag => '1.0.0' }
+          s.author           = { 'Fachri Febrian' => 'fachripaul@gmail.com' }
+          s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git' }
           s.ios.deployment_target =  '10.0'
-          s.source_files = 'Sources/**/*.{h,m,mm,swift,c}'
+          s.source_files = 'MergedPods/UIObjc/Sources/**/*.{h,m,mm,swift,c}'
         
-s.module_map = 'Sources/module.modulemap'
+s.module_map = 'MergedPods/UIObjc/Sources/module.modulemap'
 s.frameworks = "ImageIO", "QuartzCore"
 end

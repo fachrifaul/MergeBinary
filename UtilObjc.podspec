@@ -6,16 +6,16 @@
           s.description      = 'Merged Framework containing the pods: ["Texture", "PINCache", "PINOperation", "PINRemoteImage", "TrustKit"]'
           s.homepage         = 'https://github.com/grab/cocoapods-pod-merge'
           s.license          = { :type => 'MIT', :text => 'Merged Pods by cocoapods-pod-merge plugin  ' }
-          s.author           = { 'GrabTaxi Pte Ltd' => 'dummy@grabtaxi.com' }
-          s.source           = { :git => 'https://github.com/grab/cocoapods-pod-merge', :tag => '1.0.0' }
+          s.author           = { 'Fachri Febrian' => 'fachripaul@gmail.com' }
+          s.source           = { :git => 'https://github.com/fachrifaul/MergeBinary.git' }
           s.ios.deployment_target =  '10.0'
-          s.source_files = 'Sources/**/*.{h,m,mm,swift,c}'
+          s.source_files = 'MergedPods/UtilObjc/Sources/**/*.{h,m,mm,swift,c}'
         
-s.module_map = 'Sources/module.modulemap'
+s.module_map = 'MergedPods/UtilObjc/Sources/module.modulemap'
 s.frameworks = "AVFoundation", "CoreMedia", "CoreLocation", "MapKit", "AssetsLibrary", "Photos", "Foundation", "ImageIO", "Accelerate", "Security"
 s.prefix_header_contents = "#ifndef TARGET_OS_WATCH\n  #define TARGET_OS_WATCH 0\n#endif"
-s.private_header_files = "Sources/TrustKit/trie_node.h", "Sources/TrustKit/domain_registry.h"
-s.public_header_files = ["Sources/Texture/Source/*.h", "Sources/Texture/Source/Details/**/*.h", "Sources/Texture/Source/Layout/**/*.h", "Sources/Texture/Source/Base/*.h", "Sources/Texture/Source/Debug/**/*.h", "Sources/Texture/Source/TextKit/ASTextNodeTypes.h", "Sources/Texture/Source/TextKit/ASTextKitComponents.h", "Sources/PINCache/Source/**/*.h", "Sources/PINOperation/Source/**/*.h", "Sources/PINRemoteImage/Source/Classes/**/*.h", "Sources/TrustKit/TrustKit/include/TrustKit.h", "Sources/TrustKit/TrustKit/TSKTrustKitConfig.h", "Sources/TrustKit/TrustKit/TSKPinningValidator.h", "Sources/TrustKit/TrustKit/TSKPinningValidatorCallback.h", "Sources/TrustKit/TrustKit/TSKPinningValidatorResult.h", "Sources/TrustKit/TrustKit/TSKTrustDecision.h"]
+s.private_header_files = "MergedPods/UtilObjc/Sources/TrustKit/trie_node.h", "MergedPods/UtilObjc/Sources/TrustKit/domain_registry.h"
+s.public_header_files = ["MergedPods/UtilObjc/Sources/Texture/Source/*.h", "MergedPods/UtilObjc/Sources/Texture/Source/Details/**/*.h", "MergedPods/UtilObjc/Sources/Texture/Source/Layout/**/*.h", "MergedPods/UtilObjc/Sources/Texture/Source/Base/*.h", "MergedPods/UtilObjc/Sources/Texture/Source/Debug/**/*.h", "MergedPods/UtilObjc/Sources/Texture/Source/TextKit/ASTextNodeTypes.h", "MergedPods/UtilObjc/Sources/Texture/Source/TextKit/ASTextKitComponents.h", "MergedPods/UtilObjc/Sources/PINCache/Source/**/*.h", "MergedPods/UtilObjc/Sources/PINOperation/Source/**/*.h", "MergedPods/UtilObjc/Sources/PINRemoteImage/Source/Classes/**/*.h", "MergedPods/UtilObjc/Sources/TrustKit/TrustKit/include/TrustKit.h", "MergedPods/UtilObjc/Sources/TrustKit/TrustKit/TSKTrustKitConfig.h", "MergedPods/UtilObjc/Sources/TrustKit/TrustKit/TSKPinningValidator.h", "MergedPods/UtilObjc/Sources/TrustKit/TrustKit/TSKPinningValidatorCallback.h", "MergedPods/UtilObjc/Sources/TrustKit/TrustKit/TSKPinningValidatorResult.h", "MergedPods/UtilObjc/Sources/TrustKit/TrustKit/TSKTrustDecision.h"]
 s.libraries = "c++"
 s.compiler_flags = "-fno-exceptions -Wno-implicit-retain-self"
 end
