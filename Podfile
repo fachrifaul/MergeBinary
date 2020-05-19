@@ -17,18 +17,21 @@ workspace 'MergeBinary'
 
 def pod_merge
   # Using pod-merge - fast pod install, slow clean build
-  #  pod 'UISwift', path: 'MergedPods/UISwift'
-  #  pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
-  #  pod 'UtilSwift', path: 'MergedPods/UtilSwift'
-    pod 'UtilObjc', path: 'MergedPods/UtilObjc'
-  #  pod 'UIObjc', path: 'MergedPods/UIObjc'
+   pod 'UISwift', path: 'MergedPods/UISwift'
+   pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift'
+   pod 'UtilSwift', path: 'MergedPods/UtilSwift'
+   pod 'UtilObjc', path: 'MergedPods/UtilObjc'
+   pod 'UIObjc', path: 'MergedPods/UIObjc'
   
   # Code UISwift with Pod-merge and make binary - slow first pod install (build pre-complie), fast clean build
-  pod 'UISwift','~> 1.0.0', :binary => true
-  pod 'NetworkingSwift','~> 1.0.0', :binary => true
-  pod 'UtilSwift','~> 1.0.0', :binary => true
-#  pod 'UtilObjc', :binary => true # still cannot build
-  pod 'UIObjc','~> 1.0.0', :binary => true
+  # $pod_merge_version = { :git => 'https://github.com/fachrifaul/MergeBinary.git', :branch => 'master' }
+#  $pod_merge_version = '~> 1.0.0'
+  
+  # pod 'UISwift', $pod_merge_version, :binary => true
+  # pod 'NetworkingSwift', $pod_merge_version, :binary => true
+  # pod 'UtilSwift',$pod_merge_version, :binary => true
+#  pod 'UtilObjc', $pod_merge_version, :binary => true # still cannot build
+  # pod 'UIObjc',$pod_merge_version, :binary => true
   
   # Binary UISwift - slow first pod install (download pre-compile), fast clean build - remote
   #  pod 'UISwift-Binary', '~> 1.0.0'
@@ -43,6 +46,13 @@ def pod_merge
   #  pod 'UtilSwift-Binary', path: './'
   #  pod 'UtilObjc-Binary', path: 'MergedPodsBinary/UtilObjc' // still cannot build
   #  pod 'UIObjc-Binary', path: './'
+
+  # Using pod-merge - and local pod binary
+   # pod 'UISwift', path: 'MergedPods/UISwift', :binary => true
+   # pod 'NetworkingSwift', path: 'MergedPods/NetworkingSwift', :binary => true
+   # pod 'UtilSwift', path: 'MergedPods/UtilSwift', :binary => true
+   # pod 'UtilObjc', path: 'MergedPods/UtilObjc', :binary => true
+   # pod 'UIObjc', path: 'MergedPods/UIObjc', :binary => true
 end
 
 def core_pods

@@ -1,40 +1,43 @@
 PODS:
   - KeychainSwift (18.0.0)
-  - NetworkingSwift (1.0.3)
-  - UIObjc (1.0.3)
-  - UISwift (1.0.1)
+  - NetworkingSwift (1.0.0)
+  - UIObjc (1.0.0)
+  - UISwift (1.0.0)
   - UtilObjc (1.0.0)
-  - UtilSwift (1.0.3)
+  - UtilSwift (1.0.0)
 
 DEPENDENCIES:
   - KeychainSwift (= 18.0.0)
-  - NetworkingSwift (~> 1.0.0)
-  - UIObjc (~> 1.0.0)
-  - UISwift (~> 1.0.0)
+  - NetworkingSwift (from `MergedPods/NetworkingSwift`)
+  - UIObjc (from `MergedPods/UIObjc`)
+  - UISwift (from `MergedPods/UISwift`)
   - UtilObjc (from `MergedPods/UtilObjc`)
-  - UtilSwift (~> 1.0.0)
+  - UtilSwift (from `MergedPods/UtilSwift`)
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
     - KeychainSwift
-  https://github.com/fachrifaul/MyAwesomeKit-Spec.git:
-    - NetworkingSwift
-    - UIObjc
-    - UISwift
-    - UtilSwift
 
 EXTERNAL SOURCES:
+  NetworkingSwift:
+    :path: MergedPods/NetworkingSwift
+  UIObjc:
+    :path: MergedPods/UIObjc
+  UISwift:
+    :path: MergedPods/UISwift
   UtilObjc:
     :path: MergedPods/UtilObjc
+  UtilSwift:
+    :path: MergedPods/UtilSwift
 
 SPEC CHECKSUMS:
   KeychainSwift: c46e1438d121e47459fb304ac88c5e058a2a91ed
-  NetworkingSwift: 3fc360fdac7675f0ccebdb5c42d9ac55fc570bf6
-  UIObjc: 17482df8d888b9e92460d55d175e597f18451151
-  UISwift: d7cf1a045351b95aa80f5c4b0b257df0c0fb6f22
-  UtilObjc: 9fd4e09d52bf6cdc567b3baf0336ba6870367e60
-  UtilSwift: c3c6667140600999cecb2e9fb0a420115626e214
+  NetworkingSwift: a4bd9d6674ddb1540a7949ea0ac50eb20bdcba4b
+  UIObjc: b0ad039c8ce0da10703a8c6902501a0b6c0b20db
+  UISwift: 57ed3140a5742f946a735c9ae09a90a51dbbbde0
+  UtilObjc: 607d5f35d4e7115e302e0e2fa3aa1e32ab0bf93b
+  UtilSwift: 3dd3e4f3f0ecfb4c70cf594304b3f87bdac12e87
 
-PODFILE CHECKSUM: 4655bc8dd4b309539d98a650f2758edd928a4b56
+PODFILE CHECKSUM: 95d448c1cc1a8075e0c5e50acf19db7fcabe8e97
 
 COCOAPODS: 1.8.4

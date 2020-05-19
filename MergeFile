@@ -4,7 +4,7 @@ group 'UISwift'
   pod 'Charts', '3.4.0'
   pod 'DeepDiff', '2.3.1'
   pod 'IQKeyboardManagerSwift', '6.3.0'
-  pod 'NVActivityIndicatorView', { git: 'https://github.com/bukalapak/NVActivityIndicatorView.git', tag: 'bukalapak_1.2' }
+  pod 'NVActivityIndicatorView', { git: 'https://github.com/bukalapak/NVActivityIndicatorView.git', tag: 'bukalapak_1.3' }
   pod 'lottie-ios', '2.5.2'
 end
 
@@ -36,8 +36,10 @@ end
 
 group 'UtilObjc'
   has_dependencies!
+  pod 'Texture', { git: 'https://github.com/TextureGroup/Texture.git', branch: 'releases/p8.0' }
   pod 'PINCache', { git: 'https://github.com/bl-core-vitals/PINCache.git', branch: '3.0.1-beta.7' }
   pod 'PINOperation', { git: 'https://github.com/bl-core-vitals/PINOperation.git', branch: '1.1.2' }
+  pod 'PINRemoteImage', { git: 'https://github.com/bl-core-vitals/PINRemoteImage.git', branch: '3.0.0-beta.14' }
   pod 'TrustKit', { git: "https://github.com/bl-core-vitals/TrustKit.git", branch: "pod_mergeable" }
 end
 
